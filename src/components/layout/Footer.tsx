@@ -1,134 +1,192 @@
 import { Link } from "react-router-dom";
-import { MapPin, Phone, Mail, Facebook, Twitter, Linkedin, Instagram } from "lucide-react";
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Facebook,
+  Twitter,
+  Linkedin,
+  Instagram,
+} from "lucide-react";
 
 const Footer = () => {
-  const quickLinks = [
-    { path: "/", label: "Home" },
-    { path: "/about", label: "About Us" },
-    { path: "/products", label: "Products" },
-    { path: "/services", label: "Services" },
-    { path: "/contact", label: "Contact" },
-  ];
-
-  const services = [
-    "Exploration & Production",
-    "Engineering Solutions",
-    "Maintenance Services",
-    "Transportation",
-    "Environmental Compliance",
-    "Safety Training",
-  ];
-
   return (
-    <footer className="bg-primary text-primary-foreground">
-      {/* Main Footer */}
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Company Info */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 bg-secondary rounded flex items-center justify-center">
-                <span className="text-secondary-foreground font-bold text-xl">N</span>
+    <footer className="bg-primary text-white pt-12 pb-6">
+      {/* make footer slimmer & centered */}
+      <div className="max-w-6xl mx-auto px-4">
+        {/* Top 3-column area */}
+        <div className="grid gap-8 lg:grid-cols-[1fr,1.1fr,1fr] items-start">
+          {/* LEFT – Logo + intro + socials */}
+         {/* LEFT – Logo + intro + socials + product links */}
+<div className="space-y-5">
+  {/* Logo */}
+  <div className="flex items-center gap-3">
+    <div className="h-10 w-10 rounded-full bg-white flex items-center justify-center">
+      <span className="text-[#003049] font-bold text-xl">W</span>
+    </div>
+    <div>
+      <p className="text-[11px] uppercase tracking-[0.18em] text-white/80">
+        West Legend
+      </p>
+      <p className="text-lg font-bold leading-tight">
+        WEST LEGEND TRADING LLC
+      </p>
+    </div>
+  </div>
+
+  {/* Short description */}
+  <p className="text-xs text-white/80 max-w-sm leading-relaxed">
+    Trusted supplier of marine, offshore and oilfield equipment across
+    the UAE and GCC — delivering certified products, reliable service
+    and on-time project support.
+  </p>
+
+  {/* Social icons */}
+  <div className="flex gap-3">
+    {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
+      <a
+        key={i}
+        href="#"
+        className="h-8 w-8 flex items-center justify-center rounded-full border border-white/30 hover:bg-white hover:text-[#003049] transition-colors"
+      >
+        <Icon size={14} />
+      </a>
+    ))}
+  </div>
+
+  {/* Product Links (NEW) */}
+  <div className="pt-2">
+    <h4 className="text-sm font-semibold mb-2 text-white/90">Products</h4>
+
+    <ul className="space-y-1 text-xs text-white/75">
+      <li>
+        <Link to="/products" className="hover:text-secondary transition-colors">
+          Valves & Flow Control
+        </Link>
+      </li>
+      <li>
+        <Link to="/products" className="hover:text-secondary transition-colors">
+          Pipes, Tubes & Fittings
+        </Link>
+      </li>
+      <li>
+        <Link to="/products" className="hover:text-secondary transition-colors">
+          Flanges & Gaskets
+        </Link>
+      </li>
+      <li>
+        <Link to="/products" className="hover:text-secondary transition-colors">
+          Marine & Offshore Equipment
+        </Link>
+      </li>
+      <li>
+        <Link to="/products" className="hover:text-secondary transition-colors">
+          Safety & PPE
+        </Link>
+      </li>
+    </ul>
+  </div>
+</div>
+
+
+          {/* MIDDLE – Write Us form (smaller & slimmer) */}
+          <div className="bg-white text-[#003049] rounded-xl shadow-xl px-6 py-7 mx-auto w-full max-w-sm">
+            <h2 className="text-xl font-bold text-center mb-5">Write Us</h2>
+
+            <form className="space-y-3">
+              <input
+                type="text"
+                placeholder="Full Name"
+                className="w-full rounded-md border border-slate-200 px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-secondary focus:border-secondary"
+              />
+              <input
+                type="tel"
+                placeholder="Phone Number"
+                className="w-full rounded-md border border-slate-200 px-3 py-2 text-xs outline-none focus:ring-2 focus:ring-secondary focus:border-secondary"
+              />
+              <textarea
+                rows={3}
+                placeholder="Your Message"
+                className="w-full rounded-md border border-slate-200 px-3 py-2 text-xs outline-none resize-none focus:ring-2 focus:ring-secondary focus:border-secondary"
+              />
+
+              <div className="pt-1 flex justify-center">
+                <button
+                  type="submit"
+                  className="inline-flex items-center justify-center px-8 py-2.5 rounded-full bg-gradient-to-r from-[#ff7e32] to-[#ffb347] text-white text-xs font-semibold shadow-md hover:brightness-105 transition-all"
+                >
+                  Send Message
+                </button>
               </div>
-              <span className="text-2xl font-bold">NAFTA</span>
+            </form>
+          </div>
+
+          {/* RIGHT – Contact info */}
+          <div className="space-y-4 text-xs text-white/85">
+            {/* Phone */}
+            <div>
+              <div className="flex items-center gap-3 mb-1">
+                <div className="h-8 w-8 rounded-full border border-white/30 flex items-center justify-center">
+                  <Phone size={14} />
+                </div>
+                <span className="font-semibold text-sm">Phone</span>
+              </div>
+              <p className="ml-11 border-b border-white/25 pb-1.5">
+                +971 4 123 4567
+              </p>
             </div>
-            <p className="text-primary-foreground/80 mb-6">
-              Leading provider of comprehensive oil and gas industry solutions with over 25 years of excellence.
-            </p>
-            <div className="flex gap-4">
-              <a href="#" className="w-10 h-10 bg-secondary rounded flex items-center justify-center hover:bg-secondary/90 transition-smooth">
-                <Facebook size={18} />
-              </a>
-              <a href="#" className="w-10 h-10 bg-secondary rounded flex items-center justify-center hover:bg-secondary/90 transition-smooth">
-                <Twitter size={18} />
-              </a>
-              <a href="#" className="w-10 h-10 bg-secondary rounded flex items-center justify-center hover:bg-secondary/90 transition-smooth">
-                <Linkedin size={18} />
-              </a>
-              <a href="#" className="w-10 h-10 bg-secondary rounded flex items-center justify-center hover:bg-secondary/90 transition-smooth">
-                <Instagram size={18} />
-              </a>
+
+            {/* Email */}
+            <div>
+              <div className="flex items-center gap-3 mb-1">
+                <div className="h-8 w-8 rounded-full border border-white/30 flex items-center justify-center">
+                  <Mail size={14} />
+                </div>
+                <span className="font-semibold text-sm">Email</span>
+              </div>
+              <p className="ml-11 border-b border-white/25 pb-1.5">
+                info@westlegendtrading.com
+              </p>
             </div>
-          </div>
 
-          {/* Quick Links */}
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-secondary">Quick Links</h3>
-            <ul className="space-y-2">
-              {quickLinks.map((link) => (
-                <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-primary-foreground/80 hover:text-secondary transition-smooth"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+            {/* Address */}
+            <div>
+              <div className="flex items-center gap-3 mb-1">
+                <div className="h-8 w-8 rounded-full border border-white/30 flex items-center justify-center">
+                  <MapPin size={14} />
+                </div>
+                <span className="font-semibold text-sm">Address</span>
+              </div>
+              <p className="ml-11 border-b border-white/25 pb-1.5 leading-relaxed">
+                Dubai, United Arab Emirates
+                <br />
+                Serving UAE &amp; GCC Region
+              </p>
+            </div>
 
-          {/* Services */}
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-secondary">Our Services</h3>
-            <ul className="space-y-2">
-              {services.map((service, index) => (
-                <li key={index}>
-                  <Link
-                    to="/services"
-                    className="text-primary-foreground/80 hover:text-secondary transition-smooth"
-                  >
-                    {service}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-xl font-bold mb-4 text-secondary">Contact Info</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <MapPin size={20} className="text-secondary mt-1 flex-shrink-0" />
-                <span className="text-primary-foreground/80">
-                  123 Industrial Ave, Houston, TX 77002, USA
-                </span>
-              </li>
-              <li className="flex items-center gap-3">
-                <Phone size={20} className="text-secondary flex-shrink-0" />
-                <a href="tel:+1234567890" className="text-primary-foreground/80 hover:text-secondary transition-smooth">
-                  +1 (234) 567-890
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <Mail size={20} className="text-secondary flex-shrink-0" />
-                <a href="mailto:info@nafta.com" className="text-primary-foreground/80 hover:text-secondary transition-smooth">
-                  info@nafta.com
-                </a>
-              </li>
-            </ul>
+            {/* Working hours */}
+            <div>
+              <div className="flex items-center gap-3 mb-1">
+                <div className="h-8 w-8 rounded-full border border-white/30 flex items-center justify-center">
+                  <span className="text-[10px] font-semibold">Hrs</span>
+                </div>
+                <span className="font-semibold text-sm">Working Hours</span>
+              </div>
+              <p className="ml-11 leading-relaxed">
+                Mon–Fri: 8:00am – 6:00pm
+                <br />
+                Sat: 9:00am – 2:00pm
+                <br />
+                Sun: Closed
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* Bottom Bar */}
-      <div className="border-t border-primary-foreground/10">
-        <div className="container mx-auto px-4 py-6">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-primary-foreground/70">
-            <p>&copy; {new Date().getFullYear()} NAFTA Oil & Gas. All rights reserved.</p>
-            <div className="flex gap-6">
-              <Link to="#" className="hover:text-secondary transition-smooth">
-                Privacy Policy
-              </Link>
-              <Link to="#" className="hover:text-secondary transition-smooth">
-                Terms of Service
-              </Link>
-              <Link to="#" className="hover:text-secondary transition-smooth">
-                Sitemap
-              </Link>
-            </div>
-          </div>
+        {/* Bottom bar */}
+        <div className="mt-8 border-t border-white/15 pt-4 text-center text-[11px] text-white/70">
+          &copy; {new Date().getFullYear()} WEST LEGEND TRADING LLC. All rights
+          reserved.
         </div>
       </div>
     </footer>

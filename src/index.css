@@ -163,3 +163,24 @@ All colors MUST be HSL.
     background-color: hsl(var(--orange-primary));
   }
 }
+
+
+
+
+@keyframes oil {
+  0% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  25% {
+    transform: translate(12px, -10px) scale(1.03);
+  }
+  50% {
+    transform: translate(-8px, 6px) scale(0.98);
+  }
+  75% {
+    transform: translate(6px, 12px) scale(1.02);
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
