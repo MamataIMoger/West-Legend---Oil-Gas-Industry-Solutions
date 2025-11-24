@@ -14,9 +14,10 @@ import {
 } from "lucide-react";
 
 import productsData from "@/data/products.json";
+import { motion } from "framer-motion";
 
 const Home = () => {
-  const featuredProducts = productsData.slice(0, 3);
+  const featuredProducts = productsData.slice(0, 3); // (not used yet, ok for future)
 
   return (
     <div className="bg-white text-slate-900">
@@ -24,7 +25,12 @@ const Home = () => {
       <Hero />
 
       {/* CATEGORY STRIP */}
-      <section className="w-full bg-primary -mt-10 relative z-30 shadow-lg">
+      <motion.section
+        className="w-full bg-primary -mt-10 relative z-30 shadow-lg"
+        initial={{ opacity: 0, y: 40 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
         <div className="max-w-6xl mx-auto grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
           {[
             {
@@ -53,9 +59,12 @@ const Home = () => {
               Icon: Globe2,
             },
           ].map(({ title, desc, Icon }, index) => (
-            <div
+            <motion.div
               key={index}
               className="group px-5 py-8 text-center border-r border-white/10 last:border-r-0 transition-all duration-300 hover:bg-secondary"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.15 * index }}
             >
               <div className="flex justify-center mb-4">
                 <Icon
@@ -74,16 +83,28 @@ const Home = () => {
               <p className="text-xs md:text-sm text-white/80 group-hover:text-[#003049]/90">
                 {desc}
               </p>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </section>
+      </motion.section>
 
       {/* WELCOME SECTION */}
-      <section className="relative bg-gradient-to-b from-[#fff4e5] via-white to-white pt-20 pb-20">
+      <motion.section
+        className="relative bg-gradient-to-b from-[#fff4e5] via-white to-white pt-20 pb-20"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
         <div className="max-w-6xl mx-auto px-4 grid gap-12 lg:grid-cols-[1.1fr,1fr] items-center">
           {/* TEXT SIDE */}
-          <div className="space-y-6">
+          <motion.div
+            className="space-y-6"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
             <div className="inline-flex items-center gap-3 rounded-full bg-white px-3 py-1 shadow-sm border border-orange-100">
               <div className="h-1.5 w-1.5 rounded-full bg-secondary" />
               <span className="text-xs font-semibold uppercase tracking-wider text-secondary">
@@ -110,98 +131,130 @@ const Home = () => {
 
             {/* Highlights */}
             <div className="grid gap-4 sm:grid-cols-3 pt-2">
-              <div>
-                <div className="h-10 w-10 rounded-full bg-secondary/10 flex items-center justify-center mb-2">
-                  <Droplets className="text-secondary" size={20} />
-                </div>
-                <p className="font-semibold text-[#0b2a45]">Marine & Offshore</p>
-                <p className="text-xs text-slate-600">
-                  Specialized equipment for tough environments.
-                </p>
-              </div>
-
-              <div>
-                <div className="h-10 w-10 rounded-full bg-secondary/10 flex items-center justify-center mb-2">
-                  <ShieldCheck className="text-secondary" size={20} />
-                </div>
-                <p className="font-semibold text-[#0b2a45]">Certified Quality</p>
-                <p className="text-xs text-slate-600">
-                  Products meeting API / ASTM / ISO standards.
-                </p>
-              </div>
-
-              <div>
-                <div className="h-10 w-10 rounded-full bg-secondary/10 flex items-center justify-center mb-2">
-                  <Globe2 className="text-secondary" size={20} />
-                </div>
-                <p className="font-semibold text-[#0b2a45]">GCC Wide Reach</p>
-                <p className="text-xs text-slate-600">
-                  Delivering to UAE, Qatar, KSA, Oman & more.
-                </p>
-              </div>
+              {[
+                {
+                  title: "Marine & Offshore",
+                  desc: "Specialized equipment for tough environments.",
+                  Icon: Droplets,
+                },
+                {
+                  title: "Certified Quality",
+                  desc: "Products meeting API / ASTM / ISO standards.",
+                  Icon: ShieldCheck,
+                },
+                {
+                  title: "GCC Wide Reach",
+                  desc: "Delivering to UAE, Qatar, KSA, Oman & more.",
+                  Icon: Globe2,
+                },
+              ].map(({ title, desc, Icon }, i) => (
+                <motion.div
+                  key={i}
+                  className="space-y-1"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.4 }}
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                >
+                  <div className="h-10 w-10 rounded-full bg-secondary/10 flex items-center justify-center mb-2">
+                    <Icon className="text-secondary" size={20} />
+                  </div>
+                  <p className="font-semibold text-[#0b2a45]">{title}</p>
+                  <p className="text-xs text-slate-600">{desc}</p>
+                </motion.div>
+              ))}
             </div>
 
             {/* CTAs */}
-            <div className="flex gap-3">
+            <motion.div
+              className="flex gap-3"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.5 }}
+            >
               <Link to="/products">
                 <Button className="gap-2">
                   Explore Products <ArrowRight size={16} />
                 </Button>
               </Link>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
 
           {/* IMAGE */}
-          <div className="relative">
+          <motion.div
+            className="relative"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
+          >
             <div className="absolute -inset-4 bg-gradient-to-tr from-[#ffb347]/40 blur-3xl opacity-70 rounded-3xl" />
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-orange-100">
               <img
                 src="/images/01.jpg"
-                className="h-72 md:h-80 lg:h-96 w-full object-cover"
+                className="h-72 md:h-80 lg:h-96 w-full object-cover scale-105 transition-transform duration-700 hover:scale-110"
               />
             </div>
-          </div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* STATS SECTION */}
-      <section className="bg-[#0b2a45] py-12">
+      <motion.section
+        className="bg-[#0b2a45] py-12"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <div className="max-w-6xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-          <div>
-            <p className="text-3xl font-bold text-secondary">15+</p>
-            <p className="text-xs text-slate-200 uppercase">Years Experience</p>
-          </div>
-          <div>
-            <p className="text-3xl font-bold text-secondary">500+</p>
-            <p className="text-xs text-slate-200 uppercase">Projects</p>
-          </div>
-          <div>
-            <p className="text-3xl font-bold text-secondary">300+</p>
-            <p className="text-xs text-slate-200 uppercase">Products</p>
-          </div>
-          <div>
-            <p className="text-3xl font-bold text-secondary">6</p>
-            <p className="text-xs text-slate-200 uppercase">GCC Countries</p>
-          </div>
+          {[
+            { label: "Years Experience", value: "15+" },
+            { label: "Projects", value: "500+" },
+            { label: "Products", value: "300+" },
+            { label: "GCC Countries", value: "6" },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.4, delay: i * 0.1 }}
+            >
+              <p className="text-3xl font-bold text-secondary">{item.value}</p>
+              <p className="text-xs text-slate-200 uppercase">{item.label}</p>
+            </motion.div>
+          ))}
         </div>
-      </section>
-
-     
+      </motion.section>
 
       {/* WHY CHOOSE US */}
-      <section className="relative py-20">
+      <motion.section
+        className="relative py-20"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+      >
         <div className="absolute inset-0 bg-[url('/images/service1.jpg')] bg-fixed bg-cover bg-center" />
         <div className="absolute inset-0 bg-[#0b2a45]/85" />
 
         <div className="relative max-w-6xl mx-auto px-4">
-          <div className="mb-10">
+          <motion.div
+            className="mb-10"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.5 }}
+          >
             <p className="text-xs text-secondary uppercase tracking-wider">
               Why Choose Us
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white">
               Why Choose WEST LEGEND?
             </h2>
-          </div>
+          </motion.div>
 
           <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
             {[
@@ -226,9 +279,13 @@ const Home = () => {
                 Icon: Truck,
               },
             ].map(({ title, desc, Icon }, i) => (
-              <div
+              <motion.div
                 key={i}
                 className="group bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg p-6 hover:bg-secondary transition shadow-lg"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
               >
                 <div className="w-12 h-12 rounded-full bg-secondary/30 flex items-center justify-center mb-4 group-hover:bg-white/20 transition">
                   <Icon
@@ -241,33 +298,51 @@ const Home = () => {
                   {title}
                 </h3>
                 <p className="text-sm text-slate-200">{desc}</p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* FINAL CTA */}
-      <section className="bg-secondary py-12">
+      <motion.section
+        className="bg-secondary py-12"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+      >
         <div className="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.5 }}
+          >
             <p className="text-xs uppercase text-white/80">Get Started</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">
               Need industrial supplies? We’re here to support you.
             </h2>
             <p className="text-sm text-white/80 mt-2 max-w-lg">
-              Send us your requirements and our team will share options,
-              pricing, and delivery timelines.
+              Send us your requirements and our team will share options, pricing,
+              and delivery timelines.
             </p>
-          </div>
+          </motion.div>
 
-          <Link to="/contact">
-            <Button className="bg-white text-secondary hover:bg-white/90">
-              Contact Us
-            </Button>
-          </Link>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.4 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Link to="/contact">
+              <Button className="bg-white text-secondary hover:bg-white/90">
+                Contact Us
+              </Button>
+            </Link>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };
