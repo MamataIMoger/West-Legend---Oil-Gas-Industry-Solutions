@@ -1,94 +1,153 @@
 import ContactForm from "@/components/ContactForm";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail } from "lucide-react";
+import { motion } from "framer-motion";
 
 const Contact = () => {
-  const contactInfo = [
-    {
-      icon: MapPin,
-      title: "Visit Us",
-      details: ["123 Industrial Ave", "Houston, TX 77002", "United States"],
-    },
-    {
-      icon: Phone,
-      title: "Call Us",
-      details: ["+1 (234) 567-890", "+1 (234) 567-891"],
-    },
-    {
-      icon: Mail,
-      title: "Email Us",
-      details: ["info@nafta.com", "support@nafta.com"],
-    },
-    {
-      icon: Clock,
-      title: "Working Hours",
-      details: ["Mon - Fri: 8:00 AM - 6:00 PM", "Sat: 9:00 AM - 2:00 PM", "Sun: Closed"],
-    },
-  ];
-
   return (
     <div>
-      {/* Page Header */}
-      <section className="bg-primary text-primary-foreground py-20">
+
+      {/* -------------------------------------- */}
+      {/* PAGE HEADER (BANNER) */}
+      {/* -------------------------------------- */}
+      <section
+        className="py-40 bg-cover bg-center bg-no-repeat text-primary-foreground"
+        style={{
+          backgroundImage: "url('/images/contact13.jpg')",
+        }}
+      >
         <div className="container mx-auto px-4">
           <h1 className="mb-4 text-primary-foreground">Contact Us</h1>
           <p className="text-xl text-primary-foreground/90 max-w-3xl">
-            Get in touch with our team. We're here to answer your questions and discuss your project needs.
+            WEST LEGEND TRADING LLC
           </p>
         </div>
       </section>
 
-      {/* Contact Information Cards */}
-      <section className="py-20 bg-muted">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {contactInfo.map((info, index) => {
-              const Icon = info.icon;
-              return (
-                <div key={index} className="bg-background p-6 rounded-lg shadow-industrial text-center">
-                  <div className="w-16 h-16 bg-secondary/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Icon className="text-secondary" size={28} />
-                  </div>
-                  <h3 className="text-lg font-bold mb-3">{info.title}</h3>
-                  {info.details.map((detail, idx) => (
-                    <p key={idx} className="text-muted-foreground text-sm">
-                      {detail}
-                    </p>
-                  ))}
+
+
+      {/* -------------------------------------- */}
+      {/* CONTACT CARDS BELOW BANNER */}
+      {/* -------------------------------------- */}
+      <section className="relative z-20 -mt-16 mb-16">
+        <div className="container mx-auto px-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+          {[
+            { icon: <MapPin size={28} />, title: "Our Address", text: "P.O. Box 19088, Deira\n Dubai – UAE" },
+            { icon: <Phone size={28} />, title: "Our Number", text: "+971 4 266 4574 \n+971 4 272 1901" },
+            { icon: <img src="/icons/FaxWhite.svg" alt="Fax" className="w-7 h-7" />, title: "Our Fax", text: "+971 4 273 8912" },
+            { icon: <Mail size={28} />, title: "Our Email", text: "westlegendtrdg@hotmail.com" }
+          ].map((item, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="relative bg-[#0a1a2f] text-white p-6 rounded-lg shadow-xl overflow-hidden group"
+            >
+
+              {/* ORANGE SWIPE HOVER */}
+              <div
+                className="absolute inset-0 bg-secondary -translate-y-full group-hover:translate-y-0 
+                transition-transform duration-500 ease-out"
+              ></div>
+
+              <div className="relative z-10 space-y-3">
+                <div className="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center">
+                  {item.icon}
                 </div>
-              );
-            })}
-          </div>
+                <h3 className="text-lg font-semibold">{item.title}</h3>
+                <p className="text-white/80 whitespace-pre-line text-sm leading-relaxed">
+                  {item.text}
+                </p>
+              </div>
+
+            </motion.div>
+          ))}
+
         </div>
       </section>
 
-      {/* Contact Form Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="mb-4">Send Us a Message</h2>
-              <p className="text-xl text-muted-foreground">
-                Fill out the form below and we'll get back to you within 24 hours
-              </p>
-            </div>
-            
-            <div className="bg-muted p-8 md:p-12 rounded-lg shadow-industrial">
-              <ContactForm />
-            </div>
-          </div>
-        </div>
-      </section>
 
-      {/* Map Section Placeholder */}
-      <section className="h-96 bg-grey-light">
-        <div className="container mx-auto px-4 h-full flex items-center justify-center">
-          <div className="text-center">
-            <MapPin className="text-secondary mx-auto mb-4" size={48} />
-            <p className="text-xl text-muted-foreground">Map Integration</p>
-            <p className="text-muted-foreground">123 Industrial Ave, Houston, TX 77002</p>
-          </div>
-        </div>
-      </section>
+
+{/* -------------------------------------- */}
+{/* CONTACT FORM SECTION */}
+{/* -------------------------------------- */}
+<section
+  className="relative py-56 bg-cover bg-center bg-no-repeat"   // ⬅ Increased height
+  style={{ backgroundImage: "url('/images/contact8.avif')" }}
+>
+  <div className="absolute inset-0 bg-black/60"></div>
+
+  <motion.div
+    initial={{ opacity: 0, scale: 0.85, y: 120 }}
+    whileInView={{ opacity: 1, scale: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.4 }}
+    transition={{
+      duration: 0.9,
+      ease: "easeOut",
+      type: "spring",
+      bounce: 0.25,
+    }}
+    className="relative z-20 max-w-3xl mx-auto bg-white/90 backdrop-blur-md p-10 rounded-xl shadow-2xl"
+  >
+
+    <h2 className="text-3xl font-bold text-[#0a1a2f] text-center mb-10">
+      Drop Us A Line
+    </h2>
+
+    <ContactForm />
+  </motion.div>
+</section>
+
+
+
+{/* SPLIT RECTANGLE MAP — now placed ON TOP OF HEADER IMAGE */}
+<section className="relative z-30 -mt-32 mb-20">
+  <motion.div
+    initial={{ opacity: 0, y: 80 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+    className="
+      mx-auto
+      w-[95%]
+      max-w-7xl
+      h-[360px]       /* ⬅ Reduced height */
+      rounded-2xl
+      shadow-2xl
+      border-[6px]
+      border-secondary
+      overflow-hidden
+      relative
+    "
+  >
+    <iframe
+  width="100%"
+  height="100%"
+  style={{ border: 0 }}
+  loading="lazy"
+  allowFullScreen
+  referrerPolicy="no-referrer-when-downgrade"
+  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3607.819436490034!2d55.310090874839894!3d25.276658828478684!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3e5f4362719be409%3A0x2782c54eae3d1243!2sWest%20Legend%20Trading%20LLC!5e0!3m2!1sen!2sin!4v1763958740957!5m2!1sen!2sin"
+>
+    &q=West+Legend+Trading+LLC
+    &zoom=15
+    &maptype=roadmap
+    &style=feature:all%7Celement:labels.text.fill%7Ccolor:0xffffff
+    &style=feature:all%7Celement:labels.text.stroke%7Ccolor:0x000000
+    &style=feature:landscape%7Celement:geometry%7Ccolor:0x1d2c4d
+    &style=feature:poi%7Celement:geometry%7Ccolor:0x1d2c4d
+    &style=feature:road%7Celement:geometry%7Ccolor:0x304a7d
+    &style=feature:road%7Celement:labels.text.fill%7Ccolor:0xffffff
+    &style=feature:road.highway%7Celement:geometry%7Ccolor:0x2c6675
+    &style=feature:water%7Celement:geometry%7Ccolor:0x0e1626
+  `
+</iframe>
+
+  </motion.div>
+</section>
+
     </div>
   );
 };
