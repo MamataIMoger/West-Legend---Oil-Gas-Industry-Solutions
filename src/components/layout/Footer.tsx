@@ -21,13 +21,7 @@ const Footer = () => {
 <div className="space-y-5">
   {/* Logo */}
   <div className="flex items-center gap-3">
-    <div className="h-10 w-10 rounded-full bg-white flex items-center justify-center">
-      <span className="text-[#003049] font-bold text-xl">W</span>
-    </div>
     <div>
-      <p className="text-[11px] uppercase tracking-[0.18em] text-white/80">
-        West Legend
-      </p>
       <p className="text-lg font-bold leading-tight">
         WEST LEGEND TRADING LLC
       </p>
