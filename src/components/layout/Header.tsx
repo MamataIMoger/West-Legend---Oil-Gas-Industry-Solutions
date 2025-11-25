@@ -106,46 +106,83 @@ const Header = () => {
     </Link>
   ))}
 
-  {/* Products Dropdown */}
-  <div
-    ref={dropdownRef}
-    className="relative"
-    onMouseEnter={openDropdown}
-    onMouseLeave={() => scheduleCloseDropdown(150)}
-  >
-    <button
-      onClick={() => setDesktopProductsOpen((s) => !s)}
-      aria-haspopup="true"
-      aria-expanded={desktopProductsOpen}
-      className={`flex items-center gap-1 font-semibold px-1 transition-colors ${
-        location.pathname.startsWith("/products")
-          ? "text-secondary"
-          : "text-foreground hover:text-secondary"
-      }`}
-    >
-      Products
-      {desktopProductsOpen ? (
-        <ChevronUp size={16} />
-      ) : (
-        <ChevronDown size={16} />
-      )}
-    </button>
+              {/* Products Dropdown */}
+              <div
+                ref={dropdownRef}
+                className="relative"
+                onMouseEnter={openDropdown}
+                onMouseLeave={() => scheduleCloseDropdown(150)}
+              >
+                <button
+                  onClick={() => setDesktopProductsOpen((s) => !s)}
+                  aria-haspopup="true"
+                  aria-expanded={desktopProductsOpen}
+                  className={`flex items-center gap-1 font-semibold px-1 transition-colors ${
+                    location.pathname.startsWith("/products") ? "text-secondary" : "text-foreground hover:text-secondary"
+                  }`}
+                >
+                  Products
+                  {desktopProductsOpen ? <ChevronUp size={16} /> : (<ChevronDown size={16} />)}
+                </button>
 
-    {desktopProductsOpen && (
-      <div
-        className="absolute left-1/2 transform -translate-x-1/2 mt-3 w-[760px] bg-white border rounded-md shadow-lg p-4 z-50 pointer-events-auto"
-        onMouseEnter={openDropdown}
-        onMouseLeave={() => scheduleCloseDropdown(120)}
-      >
-        {/* Dropdown content (same as before) */}
-        ...
-      </div>
-    )}
-  </div>
+                {desktopProductsOpen && (
+                  <div
+                    className="absolute left-1/2 transform -translate-x-1/2 mt-3 w-[760px] bg-white border rounded-md shadow-lg p-4 z-50 pointer-events-auto"
+                    onMouseEnter={openDropdown}
+                    onMouseLeave={() => scheduleCloseDropdown(120)}
+                  >
+                    <div className="grid grid-cols-4 gap-4 text-sm">
+                      {productGroups.map((group) => (
+                        <div key={group.title}>
+                          <h4 className="font-semibold text-slate-800 mb-2">{group.title}</h4>
+                          <ul className="space-y-1">
+                            {group.items.map((it) => (
+                              <li key={it}>
+                                <Link
+                                  to={`/products`}
+                                  state={{ category: group.title, item: it }}
+                                  onClick={() => setDesktopProductsOpen(false)}
+                                  className="block py-1 text-slate-600 hover:text-blue-600"
+                                >
+                                  {it}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
 
-  {/* Get A Quote */}
+                      <div>
+                        <h4 className="font-semibold text-slate-800 mb-2">Quick Links</h4>
+                        <ul className="space-y-3">
+                          <li>
+                            <Link to="/products" className="text-blue-600 font-medium" onClick={() => setDesktopProductsOpen(false)}>
+                              View All Products
+                            </Link>
+                          </li>
+                          <li>
+                            <a href={catalogUrl} target="_blank" rel="noreferrer" className="flex items-center gap-2 py-1 hover:text-blue-600">
+                              <FileText size={16} /> Download Catalog
+                            </a>
+                          </li>
+                          <li>
+                            <Link to="/contact" className="block py-1 text-slate-600 hover:text-blue-600" onClick={() => setDesktopProductsOpen(false)}>
+  Contact
+</Link>
+
+                          </li>
+                        </ul>
+                      </div>
+
+                    </div>
+                  </div>
+                )}
+
+              </div>
+
+            {/* Get A Quote */}
   <Button asChild className="bg-secondary hover:bg-secondary/90">
-    <Link to="/contact">Get A Quote</Link>
+    <Link to="/contact">Contact</Link>
   </Button>
 
   {/* Cart */}
@@ -170,7 +207,6 @@ const Header = () => {
     </span>
   </Link>
 </div>
-
 
             {/* Mobile Menu Button */}
             <div className="flex items-center gap-3 lg:hidden">
@@ -277,10 +313,11 @@ const Header = () => {
               </div>
 
               <Button asChild className="bg-secondary hover:bg-secondary/90 w-full">
-                <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  Get A Quote
-                </Link>
-              </Button>
+  <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+    Contact
+  </Link>
+</Button>
+
 
             </nav>
           </div>
