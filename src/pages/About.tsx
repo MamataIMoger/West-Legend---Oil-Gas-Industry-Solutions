@@ -25,18 +25,18 @@ const values = [
   },
   {
     // Innovation & Improvement
-    title: "Innovation & Improvement",
+    title: "Innovation &  Continuous Improvement",
     description:
-      "Listening to client feedback and adapting to industry advancements.",
+      "Listening to client feedback and adapting to industry advancements to serve you better.  ",
     icon: Target,
     group: "left",
     number: 2,
   },
   {
     // Ethical Practices
-    title: "Ethical Practices",
+    title: "Transparent & Ethical Business Practices ",
     description:
-      "Believing in honesty, integrity, and fair dealings in every transaction.",
+      "We believe in honesty, integrity, and fair dealings in every transaction.",
     icon: Eye,
     group: "right",
     number: 3,
@@ -267,7 +267,7 @@ const About = () => {
         }
         
         .value-pill .description {
-          font-size: 0.8rem;
+          font-size: 0.9rem;
           color: hsl(var(--primary-foreground) / 0.7);
           transition: color 0.35s ease;
         }

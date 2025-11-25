@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import {
   Truck,
   Zap,
@@ -10,7 +10,6 @@ import {
 } from "lucide-react";
 
 import { motion } from "framer-motion";
-import { ShoppingCart, FileText } from "lucide-react";
 import { useSearchParams } from "react-router-dom";
 
 /* ------------ 1. TYPES & DATA ------------ */
@@ -336,9 +335,8 @@ range of industrial and commercial fluid handling needs.
   /* ---------- FASTENERS ---------- */
   {
     id: 201,
-    category: "Fasteners", // ✅ make it show under Fasteners
+    category: "Fasteners",
     subCategory: "Fasteners",
-   
     title: "Bolts, Nuts, Washers & Locknuts",
     description: `
 A wide range of industrial fasteners including bolts (UNC, LN key bolts) and nuts made from stainless 
@@ -1137,7 +1135,7 @@ const ProductCard: React.FC<{
         ${
           isRelated
             ? "hover:shadow-xl"
-            : "hover:shadow-orange-200 hover:border-[#F97A1E]/70" 
+            : "hover:shadow-orange-200 hover:border-[#F97A1E]/70"
         }`}
     >
       {/* Image */}
@@ -1193,7 +1191,6 @@ type TabKey = "description" | "additional" | "reviews";
 
 const ProductsPage: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-
   const [activeCategory, setActiveCategory] = useState<string>(
     "Hoses & Connectors"
   );
@@ -1205,30 +1202,25 @@ const ProductsPage: React.FC = () => {
   >({});
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [activeTab, setActiveTab] = useState<TabKey>("description");
-  const productDetailsRef = React.useRef<HTMLDivElement | null>(null);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchParams] = useSearchParams();
+  const productDetailsRef = React.useRef<HTMLDivElement | null>(null);
 
-  // ✅ When a product is selected (from grid, sidebar, or related)
-  const handleProductSelect = (product: Product) => {
-    setSelectedProduct(product);
-    setActiveCategory(product.category);
-    setActiveSubCategory(product.subCategory ?? null);
-    setActiveTab("description");
+  // Disable background scroll when sidebar is open (Mobile UX)
+  useEffect(() => {
+    if (sidebarOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
 
-    // Save selection to localStorage
-    localStorage.setItem("selectedProductId", String(product.id));
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [sidebarOpen]);
 
-    setTimeout(() => {
-      productDetailsRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }, 50);
-  };
-
-  // ✅ Restore selection from URL (?id=...) or last viewed (localStorage)
-  React.useEffect(() => {
+  // Restore selection from URL (?id=...) or last viewed (localStorage)
+  useEffect(() => {
     const urlId = searchParams.get("id");
     const storedId = localStorage.getItem("selectedProductId");
 
@@ -1250,6 +1242,23 @@ const ProductsPage: React.FC = () => {
       });
     }, 200);
   }, [searchParams]);
+
+  // When a product is selected (from grid, sidebar, or related)
+  const handleProductSelect = (product: Product) => {
+    setSelectedProduct(product);
+    setActiveCategory(product.category);
+    setActiveSubCategory(product.subCategory ?? null);
+    setActiveTab("description");
+
+    localStorage.setItem("selectedProductId", String(product.id));
+
+    setTimeout(() => {
+      productDetailsRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }, 50);
+  };
 
   // Build category -> subcategories map
   const categoryData = useMemo(() => {
@@ -1304,39 +1313,6 @@ const ProductsPage: React.FC = () => {
   }, [activeCategory, activeSubCategory, searchQuery]);
 
   const topProducts = useMemo(() => PRODUCT_DATA.slice(0, 4), []);
-
-  const getMockFilters = (category: string) => {
-    if (category.includes("Hoses")) {
-      return (
-        <div className="p-4 bg-white rounded-xl space-y-3 mt-4 text-sm border border-slate-200 shadow-inner">
-          <p className="font-bold text-slate-800 border-b border-gray-200 pb-2">
-            Refine by Specs
-          </p>
-          <select className="w-full p-2 bg-gray-50 border border-gray-300 rounded-lg text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#F97A1E] transition-all">
-            <option>Pressure Rating (All)</option>
-            <option>Up to 5,000 PSI</option>
-            <option>5,000 - 10,000 PSI</option>
-            <option>Extreme High (10k+)</option>
-          </select>
-          <select className="w-full p-2 bg-gray-50 border border-gray-300 rounded-lg text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#F97A1E] transition-all">
-            <option>Material (All)</option>
-            <option>NBR Rubber</option>
-            <option>Viton</option>
-            <option>Stainless Steel Wire</option>
-          </select>
-        </div>
-      );
-    }
-    return (
-      <div className="p-4 bg-white rounded-xl space-y-2 mt-4 text-xs text-slate-500 border border-slate-200 shadow-inner">
-        <p className="font-bold text-slate-800">
-          No smart filters for this category.
-        </p>
-        <p>Use the search bar above for model numbers.</p>
-      </div>
-    );
-  };
-
   const relatedProducts = selectedProduct
     ? PRODUCT_DATA.filter(
         (p) =>
@@ -1384,50 +1360,49 @@ const ProductsPage: React.FC = () => {
 
         {/* Oil Droplet Motion */}
         <div className="absolute top-[-20px] left-1/2 w-2 h-2 rounded-full bg-[#FBAE17] animate-oil-drop"></div>
+        <div className="absolute top-[-20px] left-1/2 w-2 h-2 rounded-full bg-[#F97A1E] animate-oil-drop"></div>
 
-  {/* 🟡 Oil Droplet Motion */}
-  <div className="absolute top-[-20px] left-1/2 w-2 h-2 rounded-full bg-[#F97A1E] animate-oil-drop"></div>
+        {/* Glow Nodes */}
+        <div className="absolute top-10 left-20 w-4 h-4 bg-[#F97A1E] rounded-full blur-md animate-pulse"></div>
+        <div className="absolute bottom-16 right-28 w-5 h-5 bg-[#F97A1E] rounded-full blur-lg animate-ping"></div>
+        <div className="absolute top-1/3 right-10 w-3 h-3 bg-[#F97A1E]/80 rounded-full animate-bounce"></div>
 
-  {/* Glow Nodes */}
-  <div className="absolute top-10 left-20 w-4 h-4 bg-[#F97A1E] rounded-full blur-md animate-pulse"></div>
-  <div className="absolute bottom-16 right-28 w-5 h-5 bg-[#F97A1E] rounded-full blur-lg animate-ping"></div>
-  <div className="absolute top-1/3 right-10 w-3 h-3 bg-[#F97A1E]/80 rounded-full animate-bounce"></div>
+        {/* Floating Icons */}
+        <div className="absolute left-12 top-1/2 -translate-y-1/2 animate-float-slow">
+          <Truck size={42} className="text-[#F97A1E]/80" />
+        </div>
+        <div className="absolute right-16 top-1/3 animate-float">
+          <Wrench size={40} className="text-[#F97A1E]/70" />
+        </div>
+        <div className="absolute left-1/3 bottom-10 animate-float-reverse">
+          <Shield size={38} className="text-[#F97A1E]/60" />
+        </div>
 
-  {/* Floating Icons */}
-  <div className="absolute left-12 top-1/2 -translate-y-1/2 animate-float-slow">
-    <Truck size={42} className="text-[#F97A1E]/80" />
-  </div>
-  <div className="absolute right-16 top-1/3 animate-float">
-    <Wrench size={40} className="text-[#F97A1E]/70" />
-  </div>
-  <div className="absolute left-1/3 bottom-10 animate-float-reverse">
-    <Shield size={38} className="text-[#F97A1E]/60" />
-  </div>
+        {/* MAIN CONTENT */}
+        <div className="container mx-auto px-6 relative z-10 text-center max-w-3xl">
+          <p className="text-xs uppercase tracking-[0.35em] text-[#F97A1E] mb-4">
+            Industrial Grade Products
+          </p>
 
-  {/* MAIN CONTENT */}
-  <div className="container mx-auto px-6 relative z-10 text-center max-w-3xl">
-    <p className="text-xs uppercase tracking-[0.35em] text-[#F97A1E] mb-4">
-      Industrial Grade Products
-    </p>
+          <h1 className="font-extrabold text-4xl sm:text-5xl lg:text-6xl mb-5 leading-tight">
+            Products <span className="text-[#F97A1E]">FOR INDUSTRY</span>
+          </h1>
 
-    <h1 className="font-extrabold text-4xl sm:text-5xl lg:text-6xl mb-5 leading-tight">
-      Products <span className="text-[#F97A1E]">FOR INDUSTRY</span>
-    </h1>
+          <p className="text-base sm:text-lg text-gray-300 mb-10">
+            Premium Marine &amp; Oilfield Components Built for Performance and
+            Safety.
+          </p>
 
-    <p className="text-base sm:text-lg text-gray-300 mb-10">
-      Premium Marine & Oilfield Components Built for Performance and Safety.
-    </p>
-
-    {/* Search */}
-    <div className="max-w-lg mx-auto">
-<input
-  type="text"
-  placeholder="Search by product name, model #, or spec..."
-  value={searchQuery}
-  onChange={(e) => setSearchQuery(e.target.value)}
-  className="w-full py-4 px-6 rounded-full bg-[#111A2B] border border-[#F97A1E]/40 text-sm
-  placeholder-gray-400 focus:ring-4 focus:ring-[#F97A1E]/40 focus:outline-none
-  text-white transition"
+          {/* Search */}
+          <div className="max-w-lg mx-auto">
+            <input
+              type="text"
+              placeholder="Search by product name, model #, or spec..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full py-4 px-6 rounded-full bg-[#111A2B] border border-[#F97A1E]/40 text-sm
+                placeholder-gray-400 focus:ring-4 focus:ring-[#F97A1E]/40 focus:outline-none
+                text-white transition"
             />
           </div>
         </div>
@@ -1435,185 +1410,194 @@ const ProductsPage: React.FC = () => {
 
       {/* ANIMATIONS */}
       <style>{`
-@keyframes gridShift {
-  0% { background-position: 0 0; }
-  100% { background-position: 48px 48px; }
-}
-.animate-grid-move {
-  animation: gridShift 40s linear infinite;
-}
+        @keyframes gridShift {
+          0% { background-position: 0 0; }
+          100% { background-position: 48px 48px; }
+        }
+        .animate-grid-move {
+          animation: gridShift 40s linear infinite;
+        }
 
-@keyframes oilDrop {
-  0% { transform: translate(-50%, -20px) scale(0.5); opacity: 0; }
-  30% { opacity: 1; }
-  100% { transform: translate(-50%, 120vh) scale(1); opacity: 0; }
-}
-.animate-oil-drop {
-  animation: oilDrop 6s ease-in infinite;
-}
+        @keyframes oilDrop {
+          0% { transform: translate(-50%, -20px) scale(0.5); opacity: 0; }
+          30% { opacity: 1; }
+          100% { transform: translate(-50%, 120vh) scale(1); opacity: 0; }
+        }
+        .animate-oil-drop {
+          animation: oilDrop 6s ease-in infinite;
+        }
 
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-14px); }
-}
-@keyframes float-reverse {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(14px); }
-}
-.animate-float {
-  animation: float 5s ease-in-out infinite;
-}
-.animate-float-reverse {
-  animation: float-reverse 5.5s ease-in-out infinite;
-}
-.animate-float-slow {
-  animation: float 7s ease-in-out infinite;
-}
-`}</style>
+        @keyframes float {
+          0%,100% { transform: translateY(0); }
+          50% { transform: translateY(-14px); }
+        }
+        @keyframes float-reverse {
+          0%,100% { transform: translateY(0); }
+          50% { transform: translateY(14px); }
+        }
+        .animate-float {
+          animation: float 5s ease-in-out infinite;
+        }
+        .animate-float-reverse {
+          animation: float-reverse 5.5s ease-in-out infinite;
+        }
+        .animate-float-slow {
+          animation: float 7s ease-in-out infinite;
+        }
+      `}</style>
 
       {/* MAIN CONTENT */}
-{/* MAIN CONTENT */}
-<main className="py-16 relative">
-  <div className="container mx-auto px-4 lg:px-8 flex flex-col lg:flex-row gap-10">
+      <main className="py-16 relative">
+        <div className="container mx-auto px-4 lg:px-8 flex flex-col lg:flex-row gap-10">
+          {/* Mobile Filter Button */}
+          <div className="lg:hidden">
+            <button
+              onClick={() => setSidebarOpen(true)}
+              className="bg-[#FF7A00] text-white px-4 py-2 rounded-lg mb-4 shadow-md sticky top-[120px] z-[25]"
+            >
+              ☰ Filters
+            </button>
+          </div>
 
-    {/* Mobile Filter Button */}
-    <div className="lg:hidden">
-      <button
-        onClick={() => setSidebarOpen(true)}
-        className="bg-[#FF7A00] text-white px-4 py-2 rounded-lg mb-4 shadow-md sticky top-[120px] z-[25]"
-      >
-        ☰ Filters
-      </button>
-    </div>
+          {/* Mobile Backdrop Overlay */}
+          {sidebarOpen && (
+            <div
+              className="fixed inset-0 bg-black/50 z-[30] lg:hidden"
+              onClick={() => setSidebarOpen(false)}
+            ></div>
+          )}
 
-    {/* Mobile Backdrop Overlay */}
-    {sidebarOpen && (
-      <div
-        className="fixed inset-0 bg-black/50 z-[30] lg:hidden"
-        onClick={() => setSidebarOpen(false)}
-      ></div>
-    )}
+          {/* SIDEBAR */}
+          <aside
+            className={`
+              bg-white p-6 rounded-2xl shadow-xl border border-gray-200
+              transition-all duration-300 
 
-    {/* SIDEBAR */}
-    <aside
-      className={`
-        bg-white p-6 rounded-2xl shadow-xl border border-gray-200 h-fit transition-all duration-300
+              ${
+                sidebarOpen
+                  ? "fixed top-[80px] left-0 w-72 h-[calc(100vh-80px)] overflow-y-auto z-50"
+                  : "hidden"
+              }
 
-        /* Mobile Slide-in */
-        ${sidebarOpen ? "fixed top-[120px] left-0 w-64 z-[40]" : "hidden"}
-
-        /* Desktop Always Visible */
-        lg:block lg:sticky lg:top-[120px] lg:w-1/4
-      `}
-    >
-      {/* Close Button Only Mobile */}
-      <div className="lg:hidden flex justify-end mb-3">
-        <button onClick={() => setSidebarOpen(false)} className="text-slate-700 text-lg">
-          ✕
-        </button>
-      </div>
-
-      <h2 className="text-lg font-extrabold text-slate-900 mb-4 border-b border-slate-200 pb-3">
-        Product Categories
-      </h2>
-
-      <nav className="space-y-2 mb-4">
-        {allCategories.map((category) => {
-          const Icon = CATEGORY_ICONS[category] || Package;
-          const isActive = activeCategory === category;
-          const hasSub = categoryData[category]?.size > 0;
-          const expanded = expandedCategories[category] || isActive;
-
-          return (
-            <div key={category}>
+              lg:block lg:sticky lg:top-[120px] lg:w-1/4 lg:h-auto lg:overflow-visible
+            `}
+          >
+            {/* Close Button Only Mobile */}
+            <div className="lg:hidden flex justify-end mb-3">
               <button
-                onClick={() => handleCategoryClick(category)}
-                className={`flex items-center justify-between w-full text-left px-4 py-3 rounded-xl text-sm transition-all
-                  ${isActive
-                    ? "bg-[#F97A1E] text-white font-bold shadow-lg shadow-[#F97A1E]/40"
-                    : "text-slate-700 hover:bg-gray-100 hover:text-slate-900"
-                  }`}
+                onClick={() => setSidebarOpen(false)}
+                className="text-slate-700 text-lg"
               >
-                <span className="flex items-center">
-                  <Icon className="w-5 h-5 mr-3" />
-                  {category}
-                </span>
-                {hasSub && (
-                  <span className="ml-2 text-xs">{expanded ? "−" : "+"}</span>
-                )}
+                ✕
               </button>
+            </div>
 
-              {hasSub && expanded && (
-                <div className="mt-1 mb-2 ml-6 space-y-1">
-                  {[...categoryData[category]].map((sub) => (
+            <h2 className="text-lg font-extrabold text-slate-900 mb-4 border-b border-slate-200 pb-3">
+              Product Categories
+            </h2>
+
+            <nav className="space-y-2 mb-4">
+              {allCategories.map((category) => {
+                const Icon = CATEGORY_ICONS[category] || Package;
+                const isActive = activeCategory === category;
+                const hasSub = categoryData[category]?.size > 0;
+                const expanded = expandedCategories[category] || isActive;
+
+                return (
+                  <div key={category}>
                     <button
-                      key={sub}
-                      onClick={() => handleSubCategoryClick(category, sub)}
-                      className={`w-full text-left text-xs px-3 py-1.5 rounded-lg transition-all
+                      onClick={() => handleCategoryClick(category)}
+                      className={`flex items-center justify-between w-full text-left px-4 py-3 rounded-xl text-sm transition-all
                         ${
-                          activeCategory === category && activeSubCategory === sub
-                            ? "bg-orange-100 text-orange-700 font-semibold"
-                            : "text-slate-600 hover:bg-gray-100 hover:text-slate-900"
+                          isActive
+                            ? "bg-[#F97A1E] text-white font-bold shadow-lg shadow-[#F97A1E]/40"
+                            : "text-slate-700 hover:bg-gray-100 hover:text-slate-900"
                         }`}
                     >
-                      {sub}
+                      <span className="flex items-center">
+                        <Icon className="w-5 h-5 mr-3" />
+                        {category}
+                      </span>
+                      {hasSub && (
+                        <span className="ml-2 text-xs">
+                          {expanded ? "−" : "+"}
+                        </span>
+                      )}
                     </button>
-                  ))}
-                </div>
-              )}
+
+                    {hasSub && expanded && (
+                      <div className="mt-1 mb-2 ml-6 space-y-1">
+                        {[...categoryData[category]].map((sub) => (
+                          <button
+                            key={sub}
+                            onClick={() =>
+                              handleSubCategoryClick(category, sub)
+                            }
+                            className={`w-full text-left text-xs px-3 py-1.5 rounded-lg transition-all
+                              ${
+                                activeCategory === category &&
+                                activeSubCategory === sub
+                                  ? "bg-orange-100 text-orange-700 font-semibold"
+                                  : "text-slate-600 hover:bg-gray-100 hover:text-slate-900"
+                              }`}
+                          >
+                            {sub}
+                          </button>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
+            </nav>
+
+            {/* Popular Items */}
+            <div className="mt-8 border-t border-slate-200 pt-5">
+              <h3 className="text-sm font-bold text-slate-900 mb-4">
+                Popular Items
+              </h3>
+              <div className="space-y-4">
+                {topProducts.map((p) => (
+                  <button
+                    key={p.id}
+                    onClick={() => {
+                      setSidebarOpen(false);
+                      handleProductSelect(p);
+                    }}
+                    className="flex items-center w-full text-left text-xs text-slate-700 hover:text-orange-600 transition"
+                  >
+                    <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center mr-3 overflow-hidden shadow-sm">
+                      <img
+                        src={p.imagePlaceholder}
+                        className="w-full h-full object-contain p-1"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <p className="line-clamp-2 font-medium">{p.title}</p>
+                      <p className="text-gray-400 text-[10px] mt-0.5">
+                        {p.category}
+                      </p>
+                    </div>
+                  </button>
+                ))}
+              </div>
             </div>
-          );
-        })}
-      </nav>
-
-      {getMockFilters(activeCategory)}
-
-      {/* Popular Items */}
-      <div className="mt-8 border-t border-slate-200 pt-5">
-        <h3 className="text-sm font-bold text-slate-900 mb-4">Popular Items</h3>
-        <div className="space-y-4">
-          {topProducts.map((p) => (
-            <button
-              key={p.id}
-              onClick={() => {
-                setSidebarOpen(false);
-                setSelectedProduct(p);
-              }}
-              className="flex items-center w-full text-left text-xs text-slate-700 hover:text-orange-600 transition"
-            >
-              <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center mr-3 overflow-hidden shadow-sm">
-                <img src={p.imagePlaceholder} className="w-full h-full object-contain p-1" />
-              </div>
-              <div className="flex-1">
-                <p className="line-clamp-2 font-medium">{p.title}</p>
-                <p className="text-gray-400 text-[10px] mt-0.5">{p.category}</p>
-              </div>
-            </button>
-          ))}
-        </div>
-      </div>
-    </aside>
-
-
-
+          </aside>
 
           {/* RIGHT SIDE: LIST OR DETAILS */}
           <section className="lg:w-3/4 w-full">
-
             {!selectedProduct ? (
               <>
-                {/* ---------- GRID VIEW ---------- */}
+                {/* GRID VIEW */}
                 <div className="flex items-center justify-between mb-8">
                   <div>
                     <h2 className="text-2xl md:text-3xl font-extrabold text-slate-900">
                       {activeCategory}
                       {activeSubCategory && (
-                        <>
-                          <span className="text-base font-normal text-slate-500">
-                            {" "}
-                            / {activeSubCategory}
-                          </span>
-                        </>
+                        <span className="text-base font-normal text-slate-500">
+                          {" "}
+                          / {activeSubCategory}
+                        </span>
                       )}{" "}
                       <span className="text-base font-normal text-slate-500">
                         ({filteredProducts.length} items)
@@ -1638,15 +1622,14 @@ const ProductsPage: React.FC = () => {
                       No products found in this category.
                     </p>
                     <p className="mt-3 text-base">
-                      Try selecting a different category or refining your
-                      search.
+                      Try selecting a different category or refining your search.
                     </p>
                   </div>
                 )}
               </>
             ) : (
               <>
-                {/* ---------- DETAILS VIEW ---------- */}
+                {/* DETAILS VIEW */}
                 <button
                   onClick={() => setSelectedProduct(null)}
                   className="mb-6 flex items-center text-sm text-orange-600 font-medium hover:text-orange-800 transition-colors duration-200"
@@ -1669,78 +1652,74 @@ const ProductsPage: React.FC = () => {
                   {activeSubCategory ? ` / ${activeSubCategory}` : ""}
                 </button>
 
-{/* Main info card */}
-<div
-  ref={productDetailsRef}
-  className="bg-white rounded-2xl shadow-2xl shadow-slate-200/50 border border-gray-200 p-10 flex flex-col lg:flex-row gap-12 items-start"
->
-  {/* Left: Image */}
-  <div className="lg:w-1/2 flex items-center justify-center">
-    <div className="border border-gray-200 rounded-xl p-6 bg-gray-50 shadow-inner w-full flex items-center justify-center min-h-[350px]">
-      <img
-        src={selectedProduct.imagePlaceholder}
-        alt={selectedProduct.title}
-        className="max-h-[300px] w-auto object-contain transition-transform duration-500 hover:scale-105"
-      />
-    </div>
-  </div>
+                {/* Main info card */}
+                <div
+                  ref={productDetailsRef}
+                  className="bg-white rounded-2xl shadow-2xl shadow-slate-200/50 border border-gray-200 p-10 flex flex-col lg:flex-row gap-12 items-start"
+                >
+                  {/* Left: Image */}
+                  <div className="lg:w-1/2 flex items-center justify-center">
+                    <div className="border border-gray-200 rounded-xl p-6 bg-gray-50 shadow-inner w-full flex items-center justify-center min-h-[350px]">
+                      <img
+                        src={selectedProduct.imagePlaceholder}
+                        alt={selectedProduct.title}
+                        className="max-h-[300px] w-auto object-contain transition-transform duration-500 hover:scale-105"
+                      />
+                    </div>
+                  </div>
 
-  {/* Right: Product Info */}
-  <div className="lg:w-1/2 flex flex-col justify-center space-y-4">
+                  {/* Right: Product Info */}
+                  <div className="lg:w-1/2 flex flex-col justify-center space-y-4">
+                    <p className="text-xs uppercase tracking-[0.18em] text-orange-600 font-bold">
+                      {selectedProduct.category}
+                      {selectedProduct.subCategory
+                        ? ` / ${selectedProduct.subCategory}`
+                        : ""}
+                    </p>
 
-    {/* Breadcrumb */}
-    <p className="text-xs uppercase tracking-[0.18em] text-orange-600 font-bold">
-      {selectedProduct.category}
-      {selectedProduct.subCategory ? ` / ${selectedProduct.subCategory}` : ""}
-    </p>
+                    <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight">
+                      {selectedProduct.title}
+                    </h2>
 
-    {/* Title */}
-    <h2 className="text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight">
-      {selectedProduct.title}
-    </h2>
+                    <p className="text-sm text-slate-600 mb-2 line-clamp-3">
+                      {selectedProduct.description}
+                    </p>
 
-    {/* Short Description + CTA */}
-    <p className="text-sm text-slate-600 mb-2 line-clamp-3">
-      {selectedProduct.description}
-    </p>
-
-    <button
-      onClick={() => {
-        document.getElementById("product-description-section")?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
-      }}
-      className="text-orange-600 font-semibold text-sm hover:text-orange-700 transition underline underline-offset-4 w-fit"
-    >
-      Read more →
-    </button>
-
-  </div>
-</div>
-
-
+                    <button
+                      onClick={() => {
+                        document
+                          .getElementById("product-description-section")
+                          ?.scrollIntoView({
+                            behavior: "smooth",
+                            block: "start",
+                          });
+                      }}
+                      className="text-orange-600 font-semibold text-sm hover:text-orange-700 transition underline underline-offset-4 w-fit"
+                    >
+                      Read more →
+                    </button>
+                  </div>
+                </div>
 
                 {/* Tabs section */}
-{/* Tabs section */}
-<div
-  id="product-description-section"
-  className="bg-white rounded-2xl shadow-xl border border-gray-200 mt-10"
->
-  {/* Tab headers */}
-  <div className="border-b border-gray-200 flex text-sm font-bold overflow-x-auto">
-    {(["description", "additional"] as TabKey[]).map((tab) => (
-      <button
-        key={tab}
-        onClick={() => setActiveTab(tab)}
-        className={`
-          px-6 py-4 border-r border-gray-200 uppercase tracking-wide transition-all duration-200 whitespace-nowrap
-          ${
-            activeTab === tab
-              ? "text-[#F97A1E] border-b-2 border-b-orange-600 -mb-px bg-gray-50 font-extrabold"
-              : "text-slate-600 bg-white hover:bg-gray-50"
-          }
-        `}
+                <div
+                  id="product-description-section"
+                  className="bg-white rounded-2xl shadow-xl border border-gray-200 mt-10"
+                >
+                  {/* Tab headers */}
+                  <div className="border-b border-gray-200 flex text-sm font-bold overflow-x-auto">
+                    {(["description", "additional"] as TabKey[]).map((tab) => (
+                      <button
+                        key={tab}
+                        onClick={() => setActiveTab(tab)}
+                        className={`
+                          px-6 py-4 border-r border-gray-200 uppercase tracking-wide transition-all duration-200 whitespace-nowrap
+                          ${
+                            activeTab === tab
+                              ? "text-[#F97A1E] border-b-2 border-b-orange-600 -mb-px bg-gray-50 font-extrabold"
+                              : "text-slate-600 bg-white hover:bg-gray-50"
+                          }
+                        `}
                       >
                         {tab === "description" && "Description"}
                         {tab === "additional" && "Specifications"}
@@ -1756,29 +1735,29 @@ const ProductsPage: React.FC = () => {
                       </p>
                     )}
 
-    {activeTab === "additional" && (
-      <div className="space-y-4">
-        <p className="font-extrabold text-lg text-slate-900 mb-2">
-          Detailed Technical Specifications
-        </p>
-        {selectedProduct.specs.length === 0 ? (
-          <p className="text-sm text-slate-500">
-            No additional specifications available for this product.
-          </p>
-        ) : (
-          <ul className="list-disc list-inside space-y-2 pl-4">
-            {selectedProduct.specs.map((s) => (
-              <li key={s} className="text-slate-600">
-                {s}
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    )}
-  </div>
-</div>
-
+                    {activeTab === "additional" && (
+                      <div className="space-y-4">
+                        <p className="font-extrabold text-lg text-slate-900 mb-2">
+                          Detailed Technical Specifications
+                        </p>
+                        {selectedProduct.specs.length === 0 ? (
+                          <p className="text-sm text-slate-500">
+                            No additional specifications available for this
+                            product.
+                          </p>
+                        ) : (
+                          <ul className="list-disc list-inside space-y-2 pl-4">
+                            {selectedProduct.specs.map((s) => (
+                              <li key={s} className="text-slate-600">
+                                {s}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
 
                 {/* Related Products */}
                 {relatedProducts.length > 0 && (
