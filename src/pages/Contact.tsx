@@ -47,7 +47,7 @@ const Contact = () => {
   relative mx-auto 
 
   /* MOBILE SIZE (smaller) */
-  w-44 h-44 
+  w-56 h-56
 
   /* TABLET */
   sm:w-56 sm:h-56 
