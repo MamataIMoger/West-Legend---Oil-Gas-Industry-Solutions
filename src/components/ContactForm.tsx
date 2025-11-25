@@ -32,13 +32,13 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <AnimatedInput
           label="Full Name"
           name="name"
           value={formData.name}
           onChange={handleChange}
+          autoComplete="name"
         />
 
         <AnimatedInput
@@ -47,6 +47,7 @@ const ContactForm = () => {
           value={formData.email}
           onChange={handleChange}
           type="email"
+          autoComplete="email"
         />
       </div>
 
@@ -57,6 +58,7 @@ const ContactForm = () => {
           value={formData.phone}
           onChange={handleChange}
           type="tel"
+          autoComplete="tel"
         />
 
         <AnimatedInput
@@ -64,6 +66,7 @@ const ContactForm = () => {
           name="subject"
           value={formData.subject}
           onChange={handleChange}
+          autoComplete="off"
         />
       </div>
 
@@ -73,25 +76,25 @@ const ContactForm = () => {
         value={formData.message}
         onChange={handleChange}
         rows={6}
+        autoComplete="off"
       />
 
       <button
-  className="relative overflow-hidden 
-  bg-gradient-to-r from-[#004aad] to-secondary 
-  text-white px-12 py-3 rounded-md font-semibold
-  group transition-all duration-300 shadow-md hover:shadow-lg">
+        type="submit"
+        className="relative overflow-hidden 
+        bg-gradient-to-r from-[#004aad] to-secondary 
+        text-white px-12 py-3 rounded-md font-semibold
+        group transition-all duration-300 shadow-md hover:shadow-lg"
+      >
+        <span className="relative z-10">Send Message</span>
 
-  <span className="relative z-10">Send Message</span>
-
-  {/* Shine Effect */}
-  <span
-    className="absolute inset-0 bg-white/20 translate-x-[-150%] 
-    group-hover:translate-x-[150%]
-    transition-transform duration-700 ease-out"
-  ></span>
-</button>
-
-
+        {/* Shine Effect */}
+        <span
+          className="absolute inset-0 bg-white/20 translate-x-[-150%] 
+          group-hover:translate-x-[150%]
+          transition-transform duration-700 ease-out"
+        ></span>
+      </button>
     </form>
   );
 };
