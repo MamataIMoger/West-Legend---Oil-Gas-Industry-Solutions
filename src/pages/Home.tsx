@@ -164,7 +164,8 @@ most demanding environments.
                     <Icon className="text-secondary" size={20} />
                   </div>
                   <p className="font-semibold text-[#0b2a45]">{title}</p>
-                  <p className="text-xs text-slate-600">{desc}</p>
+                  <p className="text-sm md:text-base text-slate-600 leading-relaxed">{desc}</p>
+
                 </motion.div>
               ))}
             </div>
@@ -240,7 +241,7 @@ most demanding environments.
         className="px-3"
       >
         <p className="text-lg font-bold text-secondary">{item.label}</p>
-        <p className="text-xs text-slate-200 mt-1">{item.desc}</p>
+        <p className="text-base text-slate-200 mt-1">{item.desc}</p>
       </motion.div>
     ))}
   </div>
@@ -314,7 +315,7 @@ most demanding environments.
                 <h3 className="text-lg font-semibold text-white mb-2">
                   {title}
                 </h3>
-                <p className="text-sm text-slate-200">{desc}</p>
+                <p className="text-base text-slate-200">{desc}</p>
               </motion.div>
             ))}
           </div>
@@ -340,7 +341,7 @@ most demanding environments.
             <h2 className="text-2xl md:text-3xl font-bold text-white">
               Need industrial supplies? We’re here to support you.
             </h2>
-            <p className="text-sm text-white/80 mt-2 max-w-lg">
+            <p className="text-base text-white/80 mt-2 max-w-lg">
               Send us your requirements and our team will share options, pricing,
               and delivery timelines.
             </p>

@@ -56,7 +56,7 @@ const Footer = () => {
             </div>
 
             {/* Short description */}
-            <p className="text-xs text-white/80 max-w-sm leading-relaxed">
+            <p className="text-base text-white/80 max-w-sm leading-relaxed">
               Trusted supplier of marine, offshore and oilfield equipment across
               the UAE and GCC — delivering certified products, reliable service
               and on-time project support.
@@ -84,10 +84,11 @@ const Footer = () => {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1 text-xs text-white/80">
             {/* Quick Links */}
             <div>
-              <h4 className="text-sm font-semibold mb-2 text-white/90">
+              <h4 className="text-base font-semibold mb-2 text-white/90">
                 Quick Links
               </h4>
-              <ul className="space-y-1.5">
+             <ul className="space-y-1.5 text-[15px] text-white/80">
+
                 <li>
                   <Link
                     to="/"
@@ -126,10 +127,10 @@ const Footer = () => {
 
             {/* Products */}
             <div>
-              <h4 className="text-sm font-semibold mb-2 text-white/90">
+              <h4 className="text-base font-semibold mb-2 text-white/90">
                 Product Categories
               </h4>
-              <ul className="space-y-1.5">
+              <ul className="space-y-1.5 text-[15px] text-white/80">
                 <li>
                   <Link
                     to="/products"
@@ -175,14 +176,15 @@ const Footer = () => {
           </div>
 
           {/* RIGHT – Contact info */}
-          <div className="space-y-4 text-xs text-white/85">
+          <div className="space-y-4 text-sm text-white/85">
+
             {/* Phone */}
             <div>
               <div className="flex items-center gap-3 mb-1">
                 <div className="h-8 w-8 rounded-full border border-white/30 flex items-center justify-center">
                   <Phone size={14} />
                 </div>
-                <span className="font-semibold text-sm">Phone</span>
+                <span className="font-semibold text-base">Phone</span>
               </div>
               <p className="ml-11 pb-1.5">+971 4 272 1901</p>
               <p className="ml-11 border-b border-white/25 pb-1.5">
@@ -196,7 +198,7 @@ const Footer = () => {
                 <div className="h-8 w-8 rounded-full border border-white/30 flex items-center justify-center">
                   <Mail size={14} />
                 </div>
-                <span className="font-semibold text-sm">Email</span>
+                <span className="font-semibold text-base">Email</span>
               </div>
               <p className="ml-11 border-b border-white/25 pb-1.5">
                 westlegendtrdg@hotmail.com
@@ -209,7 +211,7 @@ const Footer = () => {
                 <div className="h-8 w-8 rounded-full border border-white/30 flex items-center justify-center">
                   <MapPin size={14} />
                 </div>
-                <span className="font-semibold text-sm">Address</span>
+                <span className="font-semibold text-base">Address</span>
               </div>
               <p className="ml-11 border-b border-white/25 pb-1.5 leading-relaxed">
                 P.O. Box 19088, Deira, Dubai - UAE
@@ -221,7 +223,7 @@ const Footer = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-8 border-t border-white/15 pt-4 text-center text-[11px] text-white/70">
+        <div className="mt-8 border-t border-white/15 pt-4 text-center text-xs  text-white/70">
           &copy; {new Date().getFullYear()} WEST LEGEND TRADING LLC. All rights
           reserved.
         </div>
