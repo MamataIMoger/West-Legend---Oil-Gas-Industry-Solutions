@@ -199,12 +199,12 @@ assemblies.
       "Applications: Gas lines, hydraulic connections, marine piping systems",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Yarn+Thread",
+      "/images/YarnThread.jpeg",
   },
   {
     id: 109,
     category: "Hoses & Connectors",
-    subCategory: "Hoses & Connectors",
+    subCategory: "Fittings & Adaptors",
     title: "Rotary Drilling Hoses",
     description: `
 Rotary drilling hoses are heavy-duty, flexible hoses used in oil and gas drilling applications to 
@@ -223,7 +223,7 @@ them suitable for tough drilling environments and fluid types in oilfield operat
       "Application: High-pressure drilling fluid transfer in oilfield operations",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Rotary+Drilling+Hoses",
+      "/images/RotaryDrillingHoses.jpeg",
   },
   {
     id: 110,
@@ -273,7 +273,7 @@ drilling operations, and marine fluid transfer systems.
       "90° Metric Female 24° Cone DIN 3865 L & S with O-Ring",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Hose+Fittings+%26+Adaptors",
+      "/images/HoseFittingsandAdaptors.jpeg",
   },
   {
     id: 111,
@@ -296,7 +296,7 @@ mobile hydraulic applications.
       "Applications: Industrial and mobile hydraulic systems",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Hydraulic+Tube+Couplings",
+      "/images/HydraulicTubeCouplingsandErmetoFittings.jpeg",
   },
   {
     id: 112,
@@ -321,7 +321,7 @@ such as marine, chemical processing, and oil & gas industries.
       "Applications: Marine, chemical processing, oil & gas",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Stainless+Steel+Fittings",
+      "/images/StainlessSteelFittings.jpeg",
   },
   {
     id: 113,
@@ -344,14 +344,14 @@ range of industrial and commercial fluid handling needs.
       "Benefits: Lightweight (aluminium), high strength and sanitary (stainless), durable and compatible (brass)",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Camlock+Fittings",
+      "/images/AluminiumStainlessSteelandBrassCamlockFittings.jpeg",
   },
 
   /* ---------- FASTENERS ---------- */
   {
     id: 201,
-    category: "Fasteners",
-    subCategory: "Fasteners",
+    category: "Hoses & Connectors",
+    subCategory: "Fittings & Adaptors",
     title: "Bolts, Nuts, Washers & Locknuts",
     description: `
 A wide range of industrial fasteners including bolts (UNC, LN key bolts) and nuts made from stainless 
@@ -369,7 +369,7 @@ reliable fastening in construction, manufacturing, and maintenance applications.
       "Applications: Construction, manufacturing, industrial maintenance",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Bolts+Nuts+Washers",
+      "/images/BoltsNutsWashers&Locknuts.jpeg",
   },
 
   /* ---------- TOOLS: WRENCHES & SPANNERS ---------- */
@@ -393,7 +393,7 @@ operations, and emergency repairs in demanding industrial environments.
       "Key benefit: Secure grip and precise torque control",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Spanner",
+      "/images/Spanner.jpeg",
   },
   {
     id: 302,
@@ -414,7 +414,7 @@ of multiple spanners in a single, portable instrument for maximum workplace effi
       "Advantage: Space-saving and highly versatile tool",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Adjustable+Spanner",
+      "/images/AdjustableSpanner.jpeg",
   },
   {
     id: 303,
@@ -434,7 +434,7 @@ industrial machinery, and oilfield equipment maintenance operations.
       "Applications: Automotive, machinery assembly, oilfield equipment maintenance",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Tubular+Spanner",
+      "/images/TubularSpanner.jpeg",
   },
 
   /* ---------- TOOLS: CUTTING & SHEARING ---------- */
@@ -456,7 +456,7 @@ indispensable for site work where powered cutting equipment is impractical or un
       "Applications: Construction, plumbing, fabrication, maintenance work",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Hand+Saw",
+      "/images/HandSaw.jpeg",
   },
   {
     id: 305,
@@ -476,7 +476,7 @@ accurate wire cutting in confined spaces.
       "Applications: Electrical installation, repairs, confined spaces",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Nippers",
+      "/images/Nippers.jpeg",
   },
   {
     id: 306,
@@ -496,7 +496,7 @@ cutting performance through extended use in demanding workplace conditions.
       "Applications: Manufacturing, construction, industrial sites",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Industrial+Knife",
+      "/images/knife.jpeg",
   },
   {
     id: 307,
@@ -516,7 +516,7 @@ maintenance, and detailed fabrication work requiring controlled cutting force.
       "Benefit: Hardened edges for long-term sharpness",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Side+Cutter",
+      "/images/SideCutter.jpeg",
   },
   {
     id: 308,
@@ -537,7 +537,7 @@ operations.
       "Applications: Security, emergency response, industrial maintenance",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Bolt+Cutter",
+      "/images/BoltCutter.jpeg",
   },
   {
     id: 309,
@@ -558,7 +558,7 @@ workers, HVAC technicians, and fabrication specialists in industrial and constru
       "Applications: Sheet metal, HVAC, fabrication, construction",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Aviation+Snip",
+      "/images/AviationSnip.jpeg",
   },
 
   /* ---------- TOOLS: GRIPPING & CLAMPING ---------- */
@@ -580,7 +580,7 @@ slip-joint variations for specialized tasks.
       "Applications: Electrical, plumbing, mechanical work",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Pliers",
+      "/images/pliers.jpg",
   },
   {
     id: 311,
@@ -599,7 +599,7 @@ material thicknesses and clamping requirements.
       "Benefit: Adjustable screw for various material thicknesses",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Vise+Grip",
+      "/images/ViseGrip.jpeg",
   },
   {
     id: 312,
@@ -618,7 +618,7 @@ capacities from light-duty to heavy-duty applications.
       "Range: Light-duty to heavy-duty sizes and throat depths",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=C-Clamp",
+      "/images/C-Clamp.jpeg",
   },
 
   /* ---------- TOOLS: FASTENING & ASSEMBLY ---------- */
@@ -639,7 +639,7 @@ oilfield operations.
       "Applications: Assembly, maintenance, and repair operations",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Screwdriver+Set",
+      "/images/ScrewDriverSet.jpeg",
   },
   {
     id: 314,
@@ -657,7 +657,7 @@ Pneumatic versions increase productivity in high-volume assembly operations and 
       "Applications: Sheet metal assembly, repair, fabrication",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Rivet+Gun",
+      "/images/RivetGun.jpg",
   },
   {
     id: 315,
@@ -675,7 +675,7 @@ field repairs, remote locations, and applications requiring controlled rivet pla
       "Applications: Field repairs, remote locations, low-volume work",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Hand+Rivet+Tool",
+      "/images/HandRivetTool.jpeg",
   },
 
   /* ---------- TOOLS: MARKING, MEASURING & LAYOUT ---------- */
@@ -695,7 +695,7 @@ Essential for construction layout, alignment verification, and marking cut lines
       "Benefit: Quick, accurate alignment markings on various surfaces",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Chalk+Line+Set",
+      "/images/ChalkLineSet.jpeg",
   },
   {
     id: 317,
@@ -714,7 +714,7 @@ industrial settings.
       "Options: Magnetic models for hands-free use on metal surfaces",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Spirit+Level",
+      "/images/SpiritLevels.jpeg",
   },
   {
     id: 318,
@@ -732,7 +732,7 @@ Precision-machined edges ensure accurate measurements and layout work in fabrica
       "Benefit: Precision-machined edges for accurate marking",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Try+Square",
+      "/images/RightAngleTrySquare.jpeg",
   },
 
   /* ---------- TOOLS: FINISHING & SMOOTHING ---------- */
@@ -753,7 +753,7 @@ requirements.
       "Applications: Deburring, smoothing, and finishing surfaces",
     ],
     imagePlaceholder:
-      "/images/FilesSet.jpg",
+      "/images/Files Set.jpeg",
   },
   {
     id: 320,
@@ -794,7 +794,7 @@ reduce fatigue during extended standing and walking.
       "Benefit: Comfort for extended work shifts",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Safety+Shoes",
+      "/images/SafetyShoes.jpeg",
   },
   {
     id: 402,
@@ -812,7 +812,7 @@ Suitable for training programs and temporary workers in industrial settings.
       "Benefit: Affordable protection for daily use",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Apprentice+Black",
+      "/images/ApprenticeBlackShoes.jpeg",
   },
   {
     id: 403,
@@ -830,7 +830,7 @@ Thermal insulation maintains foot comfort in cold offshore and marine conditions
       "Benefit: Stability and comfort on uneven, cold environments",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Rigger+Boots",
+      "/images/RiggerBrownShoes.jpeg",
   },
   {
     id: 404,
@@ -848,7 +848,7 @@ Lightweight construction reduces fatigue during extended wear in wet environment
       "Benefit: Lightweight design for extended wear",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Gum+Boots",
+      "/images/GumBoots.jpeg",
   },
 
   /* ---------- SAFETY ITEMS: EYE & FACE ---------- */
@@ -870,7 +870,7 @@ hot conditions.
       "Applications: Outdoor work, welding, bright environments",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Blue+Mirror+Goggles",
+      "/images/VentilatorBlueMirrorGoggles.jpeg",
   },
 
   /* ---------- SAFETY ITEMS: HAND PROTECTION ---------- */
@@ -890,7 +890,7 @@ materials provide abrasion resistance and machine washability for cost-effective
       "Feature: Abrasion-resistant, often machine washable",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Performance+Gloves",
+      "/images/Performance1Gloves.jpeg",
   },
   {
     id: 407,
@@ -908,7 +908,7 @@ formulations for cleaner handling in food and pharmaceutical applications.
       "Applications: Healthcare, food handling, pharmaceutical environments",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Surgical+Gloves",
+      "/images/SurgicalGloves.jpeg",
   },
   {
     id: 408,
@@ -926,7 +926,7 @@ properties make these gloves suitable for welding and high-temperature work.
       "Applications: Welding, metalwork, rough material handling",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Leather+Gloves",
+      "/images/LeatherGloves.jpeg",
   },
   {
     id: 409,
@@ -944,7 +944,7 @@ durability for extended chemical exposure.
       "Feature: Double-lined or heavy-duty construction for longevity",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Rubber+Gloves",
+      "/images/RubberGloves.jpeg",
   },
   {
     id: 410,
@@ -962,7 +962,7 @@ general handling and assembly work across industries.
       "Applications: General handling, assembly, warehouse tasks",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Dotted+Gloves",
+      "/images/DottedGloves.jpeg",
   },
   {
     id: 411,
@@ -980,7 +980,7 @@ cuffs protect wrists and forearms from heat and sparks during extended welding.
       "Feature: Extended cuffs for wrist and forearm safety",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Welding+Gloves",
+      "/images/WeldingGloves.jpeg",
   },
 
   /* ---------- SAFETY ITEMS: BODY PROTECTION ---------- */
@@ -1000,7 +1000,7 @@ closure options accommodate different work environments and equipment configurat
       "Benefit: Breathable, comfortable for extended shifts",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Coverall",
+      "/images/Coverall.jpeg",
   },
   {
     id: 413,
@@ -1018,7 +1018,7 @@ for highway work, traffic management, and night operations across industrial sit
       "Applications: Roadwork, traffic control, night operations",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Safety+Jackets",
+      "/images/SafetyJackets.png",
   },
   {
     id: 414,
@@ -1036,7 +1036,7 @@ adjustable straps accommodate various body sizes and equipment configurations.
       "Features: Padding and adjustable straps for comfort and fit",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Full+Body+Harness",
+      "/images/FullBodyHarness.jpeg",
   },
 
   /* ---------- SAFETY ITEMS: WARNING & SAFETY GEAR ---------- */
@@ -1056,7 +1056,7 @@ Water-resistant adhesive maintains marking in outdoor conditions and harsh weath
       "Feature: Water-resistant adhesive for outdoor durability",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Warning+Tape",
+      "/images/WarningTape.jpeg",
   },
   {
     id: 416,
@@ -1074,7 +1074,7 @@ extended UV exposure in outdoor applications.
       "Use: Elevated work sites, construction, industrial maintenance",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Safety+Nets",
+      "/images/SafetyNets.jpeg",
   },
   {
     id: 417,
@@ -1092,7 +1092,7 @@ systems absorb impact energy and distribute load across the head safely.
       "Applications: Construction, industrial, and maintenance sites",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Safety+Helmet",
+      "/images/SafetyHelmet.jpeg",
   },
   {
     id: 418,
@@ -1110,7 +1110,7 @@ adjustable straps accommodate extended use in dusty environments.
       "Applications: Construction, sanding, industrial dust environments",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Dust+Mask",
+      "/images/DustMask.jpeg",
   },
   {
     id: 419,
@@ -1128,7 +1128,7 @@ Reflective stripes enhance nighttime visibility and improve site safety.
       "Applications: Roadworks, parking management, industrial yards",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Traffic+Cone",
+      "/images/TrafficCone.jpeg",
   },
 
   /* ---------- RIGGING EQUIPMENT ---------- */
@@ -1150,7 +1150,7 @@ requirements.
       "Applications: Marine and industrial lifting operations",
     ],
     imagePlaceholder:
-      "https://placehold.co/400x300/111827/ffffff?text=Nylon+Sling",
+      "/images/NylonSling.jpeg",
   },
 ];
 

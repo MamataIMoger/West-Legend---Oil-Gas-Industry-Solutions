@@ -65,7 +65,7 @@ const fadeUpVariants = {
   },
 };
 
-const App = () => {
+const About = () => {
   const leftValues = values.filter((v) => v.group === "left");
   const rightValues = values.filter((v) => v.group === "right");
 
@@ -97,247 +97,255 @@ const App = () => {
     <div className="font-sans antialiased bg-background overflow-x-hidden w-full">
       {/* Tailwind Color Configuration for Industrial Theme (Shadcn style) */}
       <style>{`
-        /* Define a consistent industrial palette – derived from your hero image:
-           Deep navy, orange, white, soft slate text */
+        /* Global brand palette
+           Primary = deep navy, Accent = bright orange #FF7A00
+        */
         :root {
           --primary: 215 30% 15%;              /* Deep navy / charcoal */
           --primary-foreground: 210 40% 98%;   /* Near white */
-          --secondary: 42 96% 55%;            /* Orange (#FBAE17-ish) */
+          --secondary: 28 100% 50%;           /* ORANGE (#FF7A00) */
           --secondary-foreground: 215 30% 12%;
           --muted: 210 40% 96.1%;             /* Very light grey/white background */
           --background: 0 0% 100%;            /* Page background stays white */
           --muted-foreground: 215.4 16.3% 46.9%;
 
           /* Dark infographic + hero style */
-          --infographic-dark-bg: 215 30% 12%;       /* Deep navy */
-          --infographic-accent-yellow: 42 96% 55%;  /* Orange accent */
-          --infographic-bar-dark: 215 30% 20%;      /* Dark panel */
+          --infographic-dark-bg: 215 30% 12%;        /* Deep navy */
+          --infographic-accent-yellow: 28 100% 50%;  /* Now ORANGE accent (#FF7A00) */
+          --infographic-bar-dark: 215 30% 20%;       /* Dark panel */
+        }
+
+        /* quick helper so Icon class works */
+        .text-infographic-accent-yellow {
+          color: #FF7A00;
         }
 
         /* Responsive container width */
         .container {
-            max-width: 1280px;
+          max-width: 1280px;
         }
 
         /* --- Infographic Specific Styles (Horizontal Pill Layout) --- */
 
         .infographic-section-new {
-            background-color: hsl(var(--infographic-dark-bg));
-            position: relative;
-            min-height: 800px;
-            overflow: hidden;
+          background-color: hsl(var(--infographic-dark-bg));
+          position: relative;
+          min-height: 800px;
+          overflow: hidden;
         }
 
         .infographic-section-new::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url('/images/company.jpg'); /* subtle texture */
-            background-size: cover;
-            background-repeat: no-repeat;
-            opacity: 0.04;
-            z-index: 1;
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          right: 0;
+          bottom: 0;
+          background-image: url('/images/company.jpg'); /* subtle texture */
+          background-size: cover;
+          background-repeat: no-repeat;
+          opacity: 0.04;
+          z-index: 1;
         }
 
         .infographic-content-new {
-            position: relative;
-            z-index: 10;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100%;
-            padding-top: 5rem;
-            padding-bottom: 5rem;
+          position: relative;
+          z-index: 10;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          height: 100%;
+          padding-top: 5rem;
+          padding-bottom: 5rem;
         }
 
         /* Central Hub Styles */
         .hub-ring {
-            width: 350px;
-            height: 350px;
-            background-color: hsl(var(--infographic-accent-yellow));
-            border-radius: 9999px;
-            box-shadow: 0 0 80px rgba(251,174,23,0.45);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-            transition: transform 0.4s ease;
+          width: 350px;
+          height: 350px;
+          background: linear-gradient(180deg, #FF9900 0%, #FF7A00 100%);
+          border-radius: 9999px;
+          box-shadow: 0 0 80px rgba(255, 122, 0, 0.45);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-shrink: 0;
+          transition: transform 0.4s ease;
         }
         .hub-ring:hover {
-            transform: scale(1.05);
+          transform: scale(1.05);
         }
 
         .hub-center {
-            width: 250px;
-            height: 250px;
-            background-color: hsl(var(--infographic-bar-dark));
-            border-radius: 9999px;
-            box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 1.5rem;
+          width: 250px;
+          height: 250px;
+          background-color: hsl(var(--infographic-bar-dark));
+          border-radius: 9999px;
+          box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          text-align: center;
+          color: white;
+          padding: 1.5rem;
         }
 
         /* Value Card (Pill) Styles */
         .value-pill {
-            background-color: hsl(var(--infographic-bar-dark)); 
-            color: white;
-            margin: 0.75rem;
-            border-radius: 30px;
-            width: 200px;
-            min-height: 200px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-            cursor: pointer; 
-            position: relative; 
-            overflow: hidden;
-            transition: transform 0.3s;
-            z-index: 1;
+          background-color: hsl(var(--infographic-bar-dark)); 
+          color: white;
+          margin: 0.75rem;
+          border-radius: 30px;
+          width: 200px;
+          min-height: 200px;
+          box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+          cursor: pointer; 
+          position: relative; 
+          overflow: hidden;
+          transition: transform 0.35s ease, box-shadow 0.35s ease;
+          z-index: 1;
         }
         .value-pill:hover {
-             transform: translateY(-5px);
+          transform: translateY(-10px);
+          box-shadow: 0 12px 30px rgba(255, 122, 0, 0.4);
         }
         
-        /* Top-to-bottom orange fill effect */
+        /* Top-to-bottom ORANGE gradient fill on hover */
         .value-pill::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: hsl(var(--secondary) / 0.8); 
-            transform: scaleY(0);
-            transform-origin: top;
-            transition: transform 0.4s ease-in-out; 
-            z-index: 2; 
+          content: '';
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(180deg, #FF9900 0%, #FF7A00 100%);
+          transform: scaleY(0);
+          transform-origin: top;
+          transition: transform 0.35s ease-in-out; 
+          z-index: 2; 
         }
 
         .value-pill:hover::before {
-            transform: scaleY(1);
+          transform: scaleY(1);
         }
         
         .value-pill-content {
-            position: relative;
-            z-index: 3;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            height: 100%;
+          position: relative;
+          z-index: 3;
+          padding: 1.5rem;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
+          height: 100%;
         }
 
         .value-pill .icon-wrapper {
-            background-color: hsl(var(--infographic-bar-dark));
-            border: 2px solid hsl(var(--infographic-accent-yellow));
-            padding: 10px;
-            border-radius: 50%;
-            margin-bottom: 1rem;
-            display: inline-flex;
-            transition: background-color 0.4s ease;
+          background-color: hsl(var(--infographic-bar-dark));
+          border: 2px solid hsl(var(--infographic-accent-yellow));
+          padding: 10px;
+          border-radius: 50%;
+          margin-bottom: 1rem;
+          display: inline-flex;
+          transition: background-color 0.35s ease, border-color 0.35s ease;
         }
         .value-pill:hover .icon-wrapper {
-             background-color: hsl(var(--infographic-dark-bg));
+          background-color: rgba(255,255,255,0.18);
+          border-color: #FF7A00;
         }
 
         .value-pill .title {
-            font-weight: 700;
-            font-size: 1rem;
-            color: hsl(var(--infographic-accent-yellow));
-            margin-bottom: 0.5rem;
-            transition: color 0.4s ease;
+          font-weight: 700;
+          font-size: 1rem;
+          color: hsl(var(--infographic-accent-yellow));
+          margin-bottom: 0.5rem;
+          transition: color 0.35s ease;
         }
         .value-pill:hover .title {
-            color: hsl(var(--primary)); 
+          color: hsl(var(--primary)); 
         }
         
         .value-pill .description {
-            font-size: 0.8rem;
-            color: hsl(var(--primary-foreground) / 0.7);
-            transition: color 0.4s ease;
+          font-size: 0.8rem;
+          color: hsl(var(--primary-foreground) / 0.7);
+          transition: color 0.35s ease;
         }
         .value-pill:hover .description {
-            color: hsl(var(--primary) / 0.8); 
+          color: hsl(var(--primary) / 0.85); 
         }
 
         .card-group-left {
-            display: flex;
-            flex-direction: row;
-            gap: 1.5rem;
-            margin-right: 2rem; 
+          display: flex;
+          flex-direction: row;
+          gap: 1.5rem;
+          margin-right: 2rem; 
         }
         .card-group-right {
-            display: flex;
-            flex-direction: row;
-            gap: 1.5rem;
-            margin-left: 2rem;
+          display: flex;
+          flex-direction: row;
+          gap: 1.5rem;
+          margin-left: 2rem;
         }
 
         /* Mobile layout */
         @media (max-width: 1023px) {
-            .infographic-section-new {
-                min-height: auto;
-                padding-top: 3rem;
-                padding-bottom: 3rem;
-            }
-            .infographic-content-new {
-                flex-direction: column;
-            }
-            
-            .hub-ring {
-                order: 0;
-                margin-bottom: 3rem;
-                width: 300px;
-                height: 300px;
-            }
+          .infographic-section-new {
+            min-height: auto;
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+          }
+          .infographic-content-new {
+            flex-direction: column;
+          }
+          
+          .hub-ring {
+            order: 0;
+            margin-bottom: 3rem;
+            width: 300px;
+            height: 300px;
+          }
 
-            .card-group-left {
-                order: 1;
-                flex-direction: column;
-                margin: 0;
-                gap: 1rem;
-                align-items: center;
-                margin-bottom: 1rem;
-            }
-            
-            .card-group-right {
-                order: 2;
-                flex-direction: column;
-                margin: 0;
-                gap: 1rem;
-                align-items: center;
-            }
-            
-            .value-pill {
-                width: 90%; 
-                max-width: 350px; 
-                text-align: center;
-                align-items: center;
-            }
-            .value-pill .icon-wrapper {
-                margin-right: 0; 
-                margin-bottom: 0.75rem; 
-            }
-            .value-pill .title {
-                margin-bottom: 0.2rem;
-                line-height: 1.2;
-                text-align: center;
-            }
-            .value-pill .description {
-                display: block; 
-                margin-top: 0.5rem;
-                text-align: center;
-            }
+          .card-group-left {
+            order: 1;
+            flex-direction: column;
+            margin: 0;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 1rem;
+          }
+          
+          .card-group-right {
+            order: 2;
+            flex-direction: column;
+            margin: 0;
+            gap: 1rem;
+            align-items: center;
+          }
+          
+          .value-pill {
+            width: 90%; 
+            max-width: 350px; 
+            text-align: center;
+            align-items: center;
+          }
+          .value-pill .icon-wrapper {
+            margin-right: 0; 
+            margin-bottom: 0.75rem; 
+          }
+          .value-pill .title {
+            margin-bottom: 0.2rem;
+            line-height: 1.2;
+            text-align: center;
+          }
+          .value-pill .description {
+            display: block; 
+            margin-top: 0.5rem;
+            text-align: center;
+          }
         }
 
-        /* ------------ HERO INDUSTRIAL STYLES (Updated to match your image) ------------ */
+        /* ------------ HERO INDUSTRIAL STYLES (Updated to ORANGE brand) ------------ */
 
         .hero-industrial {
           position: relative;
@@ -363,12 +371,11 @@ const App = () => {
           justify-content: center;
           box-shadow: 0 25px 60px rgba(0,0,0,0.6);
           border: 1px solid rgba(148,163,184,0.4);
-          overflow: hidden; /* make inner image clip to circle */
-            animation: orbit-core-pulse 3.2s ease-in-out infinite;
-
+          overflow: hidden;
+          animation: orbit-core-pulse 3.2s ease-in-out infinite;
         }
 
-        /* 🔵 Make the image inside the circle perfectly circular and cover fully */
+        /* Make the image inside the circle perfectly circular and cover fully */
         .hero-orbit-core img {
           width: 100%;
           height: 100%;
@@ -380,7 +387,7 @@ const App = () => {
           position: absolute;
           inset: 8px;
           border-radius: 9999px;
-          border: 1px dashed rgba(251,174,23,0.6);
+          border: 1px dashed rgba(255,122,0,0.6); /* orange dashed ring */
         }
 
         .hero-orbit-ring::before {
@@ -404,25 +411,9 @@ const App = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: radial-gradient(circle at 30% 0%, rgba(251,174,23,0.45), rgba(15,23,42,0.98));
-          border: 1px solid rgba(251,174,23,0.8);
-          box-shadow: 0 0 20px rgba(251,174,23,0.4);
-        }
-
-        .hero-orbit-icon.icon-top {
-          top: -8px;
-          left: 50%;
-          transform: translateX(-50%);
-        }
-        .hero-orbit-icon.icon-right {
-          right: -8px;
-          top: 52%;
-          transform: translateY(-50%);
-        }
-        .hero-orbit-icon.icon-bottom {
-          bottom: -8px;
-          left: 18%;
-          transform: translateX(-50%);
+          background: radial-gradient(circle at 30% 0%, rgba(255,122,0,0.45), rgba(15,23,42,0.98));
+          border: 1px solid rgba(255,122,0,0.8);
+          box-shadow: 0 0 20px rgba(255,122,0,0.4);
         }
 
         .hero-hex {
@@ -441,119 +432,111 @@ const App = () => {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
         }
-         
-        
-
       `}</style>
 
-{/* 🧲 HERO SECTION WITH MOVING SHAPES + CIRCLE IMAGE */}
+      {/* 🧲 HERO SECTION WITH MOVING SHAPES + CIRCLE IMAGE */}
 <section className="relative hero-industrial text-primary-foreground py-20 overflow-hidden">
-  {/* Background Glow Effects */}
-  <div className="absolute inset-0 pointer-events-none opacity-70">
-    <div className="absolute -right-32 -top-32 w-80 h-80 rounded-full bg-[#FBAE17]/20 blur-3xl"></div>
-    <div className="absolute -left-16 bottom-0 w-64 h-64 rounded-full bg-white/5 blur-3xl"></div>
-  </div>
-
-  <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-    <div className="flex flex-col md:flex-row items-center gap-12 md:gap-16">
-
-      {/* LEFT — Orbiting Icons + Circle Image */}
-      <div className="hero-orbit-wrapper relative flex items-center justify-center">
-        {/* Hex Outline Behind */}
-        <div className="hero-hex" />
-
-        {/* Orbit with Icons */}
-        <div className="hero-orbit-ring hero-orbit-rotating">
-          {/* Top */}
-          <div
-            className="hero-orbit-icon"
-            style={{ top: "-12px", left: "50%", transform: "translateX(-50%)" }}
-          >
-            <Settings size={18} className="text-[#FBAE17]" />
-          </div>
-
-          {/* Right */}
-          <div
-            className="hero-orbit-icon"
-            style={{ top: "50%", right: "-12px", transform: "translateY(-50%)" }}
-          >
-            <Clock size={18} className="text-[#FBAE17]" />
-          </div>
-
-          {/* Bottom */}
-          <div
-            className="hero-orbit-icon"
-            style={{ bottom: "-12px", left: "50%", transform: "translateX(-50%)" }}
-          >
-            <Lightbulb size={18} className="text-[#FBAE17]" />
-          </div>
-
-          {/* Left */}
-          <div
-            className="hero-orbit-icon"
-            style={{ top: "50%", left: "-14px", transform: "translateY(-50%)" }}
-          >
-            <Anchor size={18} className="text-[#FBAE17]" />
-          </div>
+        {/* Background Glow Effects */}
+        <div className="absolute inset-0 pointer-events-none opacity-70">
+          <div className="absolute -right-32 -top-32 w-80 h-80 rounded-full bg-[#FF7A00]/20 blur-3xl"></div>
+          <div className="absolute -left-16 bottom-0 w-64 h-64 rounded-full bg-white/5 blur-3xl"></div>
         </div>
 
-        {/* Circular Image with Bold Border */}
-        <div className="hero-orbit-core rounded-full border-[6px] border-[#FBAE17] shadow-[0_0_30px_rgba(251,174,23,0.35)] overflow-hidden">
-          <motion.img
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.6 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            src="/images/company.jpg"
-            alt="West Legend Trading LLC"
-            className="w-full h-full object-cover rounded-full"
-          />
+<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+<div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
+            {/* LEFT — Orbiting Icons + Circle Image */}
+            <div className="hero-orbit-wrapper relative flex items-center justify-center">
+              {/* Hex Outline Behind */}
+              <div className="hero-hex" />
+
+              {/* Orbit with Icons */}
+              <div className="hero-orbit-ring hero-orbit-rotating">
+                {/* Top */}
+                <div
+                  className="hero-orbit-icon"
+                  style={{ top: "-12px", left: "50%", transform: "translateX(-50%)" }}
+                >
+                  <Settings size={18} className="text-[#FF7A00]" />
+                </div>
+
+                {/* Right */}
+                <div
+                  className="hero-orbit-icon"
+                  style={{ top: "50%", right: "-12px", transform: "translateY(-50%)" }}
+                >
+                  <Clock size={18} className="text-[#FF7A00]" />
+                </div>
+
+                {/* Bottom */}
+                <div
+                  className="hero-orbit-icon"
+                  style={{ bottom: "-12px", left: "50%", transform: "translateX(-50%)" }}
+                >
+                  <Lightbulb size={18} className="text-[#FF7A00]" />
+                </div>
+
+                {/* Left */}
+                <div
+                  className="hero-orbit-icon"
+                  style={{ top: "50%", left: "-14px", transform: "translateY(-50%)" }}
+                >
+                  <Anchor size={18} className="text-[#FF7A00]" />
+                </div>
+              </div>
+
+              {/* Circular Image with Bold Border */}
+              <div className="hero-orbit-core rounded-full border-[6px] border-[#FF7A00] shadow-[0_0_30px_rgba(255,122,0,0.35)] overflow-hidden">
+                <motion.img
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true, amount: 0.6 }}
+                  transition={{ duration: 0.8, ease: "easeOut" }}
+                  src="/images/company.jpg"
+                  alt="West Legend Trading LLC"
+                  className="w-full h-full object-cover rounded-full"
+                />
+              </div>
+            </div>
+
+            {/* RIGHT — Text */}
+            <div className="md:flex-1 text-center md:text-left">
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 0.5 }}
+                className="uppercase tracking-[0.35em] text-xs mb-3 text-[#FF7A00]"
+              >
+                Marine &amp; Oilfield Excellence
+              </motion.p>
+
+              <motion.h1
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.6 }}
+                variants={fadeUpVariants}
+                className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-4"
+              >
+                About WEST LEGEND TRADING LLC
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ delay: 0.1, duration: 0.6 }}
+                className="text-base sm:text-lg text-primary-foreground/80 max-w-xl mx-auto md:mx-0"
+              >
+                Leading Marine &amp; Oilfield Supplier | Delivering Quality, Building Trust
+              </motion.p>
+            </div>
+          </div>
         </div>
-      </div>
-
-      {/* RIGHT — Text */}
-      <div className="md:flex-1 text-center md:text-left">
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ duration: 0.5 }}
-          className="uppercase tracking-[0.35em] text-xs mb-3 text-[#FBAE17]"
-        >
-          Marine &amp; Oilfield Excellence
-        </motion.p>
-
-        <motion.h1
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.6 }}
-          variants={fadeUpVariants}
-          className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight mb-4"
-        >
-          About WEST LEGEND TRADING LLC
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.6 }}
-          transition={{ delay: 0.1, duration: 0.6 }}
-          className="text-base sm:text-lg text-primary-foreground/80 max-w-xl mx-auto md:mx-0"
-        >
-          Leading Marine &amp; Oilfield Supplier | Delivering Quality, Building Trust
-        </motion.p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-
-
+      </section>
 
       {/* Sequential Content Block 1: Introduction */}
       <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -609,8 +592,8 @@ const App = () => {
                   Driving value through core commitment
                 </p>
                 <div className="flex space-x-3 mt-4">
-                  <Anchor className="text-secondary" size={20} />
-                  <Truck className="text-secondary" size={20} />
+                  <Anchor className="text-[#FF7A00]" size={20} />
+                  <Truck className="text-[#FF7A00]" size={20} />
                 </div>
               </div>
             </motion.div>
@@ -650,25 +633,51 @@ const App = () => {
         </div>
       </section>
 
-      {/* CTA Section (above your global footer – you can keep or remove) */}
-      <section className="py-20 bg-secondary text-primary-foreground rounded-t-3xl shadow-2xl">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 text-primary-foreground">
-            Partner with West Legend
-          </h2>
-          <p className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8">
-            Explore our catalog or connect with our specialized team to discuss your project requirements.
-          </p>
-          <a
-            href="/contact"
-            className="inline-block bg-primary text-primary-foreground font-semibold py-3 px-8 rounded-full text-lg shadow-lg hover:bg-white/90 transition duration-300 transform hover:scale-105 hover:text-primary"
-          >
-            Contact Sales Team
-          </a>
-        </div>
-      </section>
+{/* CTA Section (above your global footer) */}
+<section className="py-20 bg-[#FF7A00] text-primary-foreground rounded-t-3xl shadow-2xl">
+  <motion.div
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.4 }}
+    transition={{ duration: 0.8, ease: "easeOut" }}
+    className="container mx-auto px-4 sm:px-6 lg:px-8 text-center"
+  >
+    <motion.h2
+      initial={{ scale: 0.95, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+      viewport={{ once: true }}
+      className="text-3xl sm:text-4xl font-extrabold mb-6 text-primary-foreground"
+    >
+      Partner with West Legend
+    </motion.h2>
+
+    <motion.p
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+      viewport={{ once: true }}
+      className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8"
+    >
+      Explore our catalog or connect with our specialized team to discuss your project requirements.
+    </motion.p>
+
+    <motion.a
+      href="/contact"
+      initial={{ opacity: 0, scale: 0.9 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      whileHover={{ scale: 1.07, boxShadow: "0 8px 30px rgba(0,0,0,0.3)" }}
+      transition={{ duration: 0.4, ease: "easeOut", delay: 0.4 }}
+      viewport={{ once: true }}
+      className="inline-block bg-primary text-primary-foreground font-semibold py-3 px-8 rounded-full text-lg shadow-lg hover:bg-white/95 transition duration-300 hover:text-primary"
+    >
+      Contact Sales Team
+    </motion.a>
+  </motion.div>
+</section>
+
     </div>
   );
 };
 
-export default App;
+export default About;
