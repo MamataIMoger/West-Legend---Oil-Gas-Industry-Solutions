@@ -122,7 +122,7 @@ const Home = () => {
 oilfield, and petroleum industries with top-quality products and exceptional service across 
 the UAE and GCC region. We specialize in providing a comprehensive range of industrial 
 equipment and materials that meet stringent API, ASTM, and ISO standards, helping 
-businesses operate smoothly, safely, and eAiciently.
+businesses operate smoothly, safely, and efficiently.
             </p>
 
             <p className="text-base md:text-lg text-slate-700 leading-relaxed">

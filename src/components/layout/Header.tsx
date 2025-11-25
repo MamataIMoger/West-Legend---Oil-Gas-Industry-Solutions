@@ -10,8 +10,8 @@ const productGroups = [
   { title: "Fittings & Adaptors", items: ["Hose Fittings", "Ferrules", "BSP / NPT / JIC / ORFS", "Stainless Steel Fittings", "Camlock Fittings"] },
   { title: "Gaskets & Sealing", items: ["Ring Joint Gaskets (API 16A)"] },
   { title: "Fasteners", items: ["Bolts, Nuts, Washers, Locknuts"] },
-  { title: "Hand Tools", items: ["Wrenches & Spanners", "Cutting Tools", "Gripping & Clamping Tools", "Measuring Tools"] },
-  { title: "Safety Items", items: ["Safety Shoes", "Gloves", "Safety Helmets", "Jackets", "Coveralls", "Full Body Harness"] },
+  { title: "Hand Tools", items: ["Wrenches & Spanners", "Cutting Tools", "Gripping Tools", "Measuring Tools"] },
+  { title: "Safety Items", items: ["Safety Shoes", "Gloves", "Safety Helmets", "Coveralls"] },
   { title: "Lifting & Rigging", items: ["Nylon Slings"] },
   { title: "Warning & Safety Gear", items: ["Warning Tape", "Safety Nets", "Traffic Cones"] },
 ];
@@ -22,16 +22,19 @@ const Header = () => {
   const [desktopProductsOpen, setDesktopProductsOpen] = useState(false);
   const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
   const location = useLocation();
+
   const dropdownRef = useRef<HTMLDivElement | null>(null);
   const closeTimeout = useRef<number | null>(null);
 
+  /* Sticky scroll effect */
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  /* Close on outside click */
   useEffect(() => {
     function onDocClick(e: MouseEvent) {
       if (!dropdownRef.current) return;
@@ -49,18 +52,18 @@ const Header = () => {
     { path: "/about", label: "About" },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (p: string) => location.pathname === p;
 
   const openDropdown = () => {
     if (closeTimeout.current) {
-      window.clearTimeout(closeTimeout.current);
+      clearTimeout(closeTimeout.current);
       closeTimeout.current = null;
     }
     setDesktopProductsOpen(true);
   };
 
   const scheduleCloseDropdown = (delay = 150) => {
-    if (closeTimeout.current) window.clearTimeout(closeTimeout.current);
+    if (closeTimeout.current) clearTimeout(closeTimeout.current);
     closeTimeout.current = window.setTimeout(() => {
       setDesktopProductsOpen(false);
       closeTimeout.current = null;
@@ -70,69 +73,65 @@ const Header = () => {
   return (
     <>
       <header
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          isScrolled ? "bg-background shadow-industrial backdrop-blur-sm" : "bg-background/95"
+        className={`sticky top-0 z-50 transition-all duration-300 backdrop-blur-lg ${
+          isScrolled ? "bg-white/90 shadow-md" : "bg-white/70"
         }`}
       >
-        <div className="container mx-auto px-4">
-          <div className="flex items-center justify-between h-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center justify-between h-16 sm:h-20">
 
-            {/* Logo */}
-<Link to="/" className="flex items-center gap-3">
-  <img
-    src="/westlegend.png"
-    alt="West Legend Logo"
-    className={`h-20 transition-all ${isScrolled ? "scale-90" : "scale-100"}`}
-  />
-</Link>
+            {/* LOGO */}
+            <Link to="/" className="flex items-center gap-3">
+              <img
+                src="/westlegend.png"
+                alt="West Legend Logo"
+                className={`transition-all h-12 sm:h-16 md:h-20 ${
+                  isScrolled ? "scale-90" : "scale-100"
+                }`}
+              />
+            </Link>
 
+            {/* DESKTOP NAV */}
+            <div className="hidden lg:flex items-center gap-8">
 
-
-{/* RIGHT SIDE NAV – MERGED */}
-<div className="hidden lg:flex items-center gap-8">
-
-  {/* Home / About */}
-  {navLinks.map((link) => (
-    <Link
-      key={link.path}
-      to={link.path}
-      className={`font-semibold relative px-1 transition-colors ${
-        isActive(link.path) ? "text-secondary" : "text-foreground hover:text-secondary"
-      }`}
-    >
-      {link.label}
-      {isActive(link.path) && (
-        <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-secondary" />
-      )}
-    </Link>
-  ))}
+              {/* Home & About */}
+              {navLinks.map((link) => (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  className={`font-semibold text-sm md:text-base relative px-1 ${
+                    isActive(link.path)
+                      ? "text-secondary"
+                      : "text-slate-800 hover:text-secondary"
+                  }`}
+                >
+                  {link.label}
+                  {isActive(link.path) && (
+                    <span className="absolute -bottom-1 left-0 w-full h-0.5 bg-secondary" />
+                  )}
+                </Link>
+              ))}
 
               {/* Products Dropdown */}
               <div
                 ref={dropdownRef}
                 className="relative"
                 onMouseEnter={openDropdown}
-                onMouseLeave={() => scheduleCloseDropdown(150)}
+                onMouseLeave={() => scheduleCloseDropdown(120)}
               >
                 <button
                   onClick={() => setDesktopProductsOpen((s) => !s)}
-                  aria-haspopup="true"
-                  aria-expanded={desktopProductsOpen}
-                  className={`flex items-center gap-1 font-semibold px-1 transition-colors ${
-                    location.pathname.startsWith("/products") ? "text-secondary" : "text-foreground hover:text-secondary"
-                  }`}
+                  className="flex items-center gap-1 font-semibold text-sm md:text-base text-slate-800 hover:text-secondary"
                 >
                   Products
-                  {desktopProductsOpen ? <ChevronUp size={16} /> : (<ChevronDown size={16} />)}
+                  {desktopProductsOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                 </button>
 
+                {/* Desktop Mega Menu */}
                 {desktopProductsOpen && (
-                  <div
-                    className="absolute left-1/2 transform -translate-x-1/2 mt-3 w-[760px] bg-white border rounded-md shadow-lg p-4 z-50 pointer-events-auto"
-                    onMouseEnter={openDropdown}
-                    onMouseLeave={() => scheduleCloseDropdown(120)}
-                  >
-                    <div className="grid grid-cols-4 gap-4 text-sm">
+                  <div className="absolute left-1/2 transform -translate-x-1/2 mt-3 w-[90vw] max-w-[760px] bg-white border rounded-md shadow-xl p-4 z-50">
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+
                       {productGroups.map((group) => (
                         <div key={group.title}>
                           <h4 className="font-semibold text-slate-800 mb-2">{group.title}</h4>
@@ -142,7 +141,6 @@ const Header = () => {
                                 <Link
                                   to={`/products`}
                                   state={{ category: group.title, item: it }}
-                                  onClick={() => setDesktopProductsOpen(false)}
                                   className="block py-1 text-slate-600 hover:text-blue-600"
                                 >
                                   {it}
@@ -153,29 +151,29 @@ const Header = () => {
                         </div>
                       ))}
 
+                      {/* Quick Links */}
                       <div>
                         <h4 className="font-semibold text-slate-800 mb-2">Quick Links</h4>
                         <ul className="space-y-3">
                           <li>
-                            <Link to="/products" className="text-blue-600 font-medium" onClick={() => setDesktopProductsOpen(false)}>
+                            <Link
+                              to="/products"
+                              className="text-blue-600 font-medium"
+                            >
                               View All Products
                             </Link>
                           </li>
-                          <li>
-                            <a
-  href={catalogUrl}
-  download
-  className="flex items-center gap-2 py-1 hover:text-blue-600"
->
-  <FileText size={16} /> Download Catalog
-</a>
 
+                          <li>
+                            <a href={catalogUrl} download className="flex items-center gap-2 text-slate-700 hover:text-blue-600">
+                              <FileText size={16} /> Download Catalog
+                            </a>
                           </li>
-                          <li>
-                            <Link to="/contact" className="block py-1 text-slate-600 hover:text-blue-600" onClick={() => setDesktopProductsOpen(false)}>
-  Contact
-</Link>
 
+                          <li>
+                            <Link to="/contact" className="text-slate-700 hover:text-blue-600">
+                              Contact
+                            </Link>
                           </li>
                         </ul>
                       </div>
@@ -183,25 +181,23 @@ const Header = () => {
                     </div>
                   </div>
                 )}
-
               </div>
 
-            {/* Get A Quote */}
-  <Button asChild className="bg-secondary hover:bg-secondary/90">
-    <Link to="/contact">Contact</Link>
-  </Button>
-</div>
+              {/* Contact Button */}
+              <Button asChild className="bg-secondary hover:bg-secondary/90">
+                <Link to="/contact">Contact</Link>
+              </Button>
+            </div>
 
-            {/* Mobile Menu Button */}
+            {/* MOBILE HEADER ICONS */}
             <div className="flex items-center gap-3 lg:hidden">
-              <a href={catalogUrl} target="_blank" rel="noreferrer" className="p-2 text-foreground">
-                <FileText size={20} />
+              <a href={catalogUrl} target="_blank" rel="noreferrer" className="p-2 text-slate-700">
+                <FileText size={22} />
               </a>
 
               <button
-                className="text-foreground"
                 onClick={() => setIsMobileMenuOpen((s) => !s)}
-                aria-label="Toggle menu"
+                className="text-slate-800"
               >
                 {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
               </button>
@@ -210,18 +206,21 @@ const Header = () => {
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* MOBILE MENU */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden bg-background border-t border-border animate-fade-in">
-            <nav className="container mx-auto px-4 py-4 flex flex-col gap-4">
-              
+          <div className="lg:hidden bg-white border-t animate-fade-in">
+            <nav className="px-4 py-4 flex flex-col gap-4">
+
+              {/* Home & About */}
               {navLinks.map((link) => (
                 <Link
                   key={link.path}
                   to={link.path}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className={`font-semibold py-2 transition-colors ${
-                    isActive(link.path) ? "text-secondary" : "text-foreground hover:text-secondary"
+                  className={`font-semibold py-2 ${
+                    isActive(link.path)
+                      ? "text-secondary"
+                      : "text-slate-800 hover:text-secondary"
                   }`}
                 >
                   {link.label}
@@ -232,28 +231,28 @@ const Header = () => {
               <div>
                 <button
                   onClick={() => setMobileProductsOpen((s) => !s)}
-                  className="w-full flex items-center justify-between py-2 font-semibold text-foreground"
+                  className="w-full flex items-center justify-between py-2 font-semibold text-slate-800"
                 >
-                  <span>Products</span>
+                  Products
                   {mobileProductsOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                 </button>
 
                 <div
-                  className={`overflow-hidden transition-all duration-300 ${
-                    mobileProductsOpen ? "max-h-[1200px] mt-2" : "max-h-0"
+                  className={`transition-all duration-300 overflow-hidden ${
+                    mobileProductsOpen ? "max-h-[1500px] mt-2" : "max-h-0"
                   }`}
                 >
-                  <div className="grid gap-4">
+                  <div className="grid gap-4 py-2">
 
-                    {productGroups.map((g) => (
-                      <div key={g.title}>
-                        <h5 className="text-sm font-semibold text-slate-800">{g.title}</h5>
+                    {productGroups.map((group) => (
+                      <div key={group.title}>
+                        <h5 className="text-sm font-semibold text-slate-900">{group.title}</h5>
                         <ul className="mt-2 space-y-1">
-                          {g.items.map((it) => (
+                          {group.items.map((it) => (
                             <li key={it}>
                               <Link
                                 to="/products"
-                                state={{ category: g.title, item: it }}
+                                state={{ category: group.title, item: it }}
                                 onClick={() => setIsMobileMenuOpen(false)}
                                 className="block text-slate-600 text-sm py-1"
                               >
@@ -265,25 +264,20 @@ const Header = () => {
                       </div>
                     ))}
 
-                    <a
-  href={catalogUrl}
-  download
-  className="text-blue-600 font-medium"
->
-  Download Catalog
-</a>
-
+                    <a href={catalogUrl} download className="text-blue-600 font-medium">
+                      Download Catalog
+                    </a>
 
                   </div>
                 </div>
               </div>
 
+              {/* Contact Button */}
               <Button asChild className="bg-secondary hover:bg-secondary/90 w-full">
-  <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-    Contact
-  </Link>
-</Button>
-
+                <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
+                  Contact
+                </Link>
+              </Button>
 
             </nav>
           </div>
