@@ -44,16 +44,27 @@ const Contact = () => {
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
         className="
-          relative mx-auto 
-          w-64 h-64 
-          rounded-full 
-          bg-[#0a1a2f] 
-          text-white 
-          shadow-xl 
-          overflow-hidden 
-          flex flex-col items-center justify-center
-          group
-        "
+  relative mx-auto 
+
+  /* MOBILE SIZE (smaller) */
+  w-44 h-44 
+
+  /* TABLET */
+  sm:w-56 sm:h-56 
+
+  /* DESKTOP (original) */
+  lg:w-64 lg:h-64 
+
+  rounded-full 
+  bg-[#0a1a2f] 
+  text-white 
+  shadow-xl 
+  overflow-hidden 
+  flex flex-col items-center justify-center
+  group
+  transition-transform
+"
+
       >
 
         {/* 🔥 ROTATING NEON GLOW BORDER */}
