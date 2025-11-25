@@ -651,7 +651,7 @@ const App = () => {
       </section>
 
       {/* CTA Section (above your global footer – you can keep or remove) */}
-      <section className="py-20 bg-primary text-primary-foreground rounded-t-3xl shadow-2xl">
+      <section className="py-20 bg-secondary text-primary-foreground rounded-t-3xl shadow-2xl">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl font-extrabold mb-6 text-primary-foreground">
             Partner with West Legend
@@ -660,8 +660,8 @@ const App = () => {
             Explore our catalog or connect with our specialized team to discuss your project requirements.
           </p>
           <a
-            href="#"
-            className="inline-block bg-secondary text-secondary-foreground font-semibold py-3 px-8 rounded-full text-lg shadow-lg hover:bg-secondary/90 transition duration-300 transform hover:scale-105"
+            href="/contact"
+            className="inline-block bg-primary text-primary-foreground font-semibold py-3 px-8 rounded-full text-lg shadow-lg hover:bg-white/90 transition duration-300 transform hover:scale-105 hover:text-primary"
           >
             Contact Sales Team
           </a>
