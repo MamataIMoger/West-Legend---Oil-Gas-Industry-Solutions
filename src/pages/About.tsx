@@ -84,7 +84,7 @@ const About = () => {
         {/* This wrapper ensures the content stays on top of the animated fill layer */}
         <div className="value-pill-content">
           <div className="icon-wrapper">
-            <Icon size={32} className="text-infographic-accent-yellow" />
+            <Icon size={32} className="text-secondary" />
           </div>
           <h4 className="title">{value.title}</h4>
           <p className="description">{value.description}</p>
@@ -98,28 +98,8 @@ const About = () => {
       {/* Tailwind Color Configuration for Industrial Theme (Shadcn style) */}
       <style>{`
         /* Global brand palette
-           Primary = deep navy, Accent = bright orange #FF7A00
+           Primary = deep navy, Accent = bright orange hsl(var(--secondary))
         */
-        :root {
-          --primary: 215 30% 15%;              /* Deep navy / charcoal */
-          --primary-foreground: 210 40% 98%;   /* Near white */
-          --secondary: 28 100% 50%;           /* ORANGE (#FF7A00) */
-          --secondary-foreground: 215 30% 12%;
-          --muted: 210 40% 96.1%;             /* Very light grey/white background */
-          --background: 0 0% 100%;            /* Page background stays white */
-          --muted-foreground: 215.4 16.3% 46.9%;
-
-          /* Dark infographic + hero style */
-          --infographic-dark-bg: 215 30% 12%;        /* Deep navy */
-          --infographic-accent-yellow: 28 100% 50%;  /* Now ORANGE accent (#FF7A00) */
-          --infographic-bar-dark: 215 30% 20%;       /* Dark panel */
-        }
-
-        /* quick helper so Icon class works */
-        .text-infographic-accent-yellow {
-          color: #FF7A00;
-        }
-
         /* Responsive container width */
         .container {
           max-width: 1280px;
@@ -128,7 +108,7 @@ const About = () => {
         /* --- Infographic Specific Styles (Horizontal Pill Layout) --- */
 
         .infographic-section-new {
-          background-color: hsl(var(--infographic-dark-bg));
+          background-color: hsl(var(--primary));
           position: relative;
           min-height: 800px;
           overflow: hidden;
@@ -163,9 +143,9 @@ const About = () => {
         .hub-ring {
           width: 350px;
           height: 350px;
-          background: linear-gradient(180deg, #FF9900 0%, #FF7A00 100%);
+          background: linear-gradient(180deg, hsl(var(--secondary)) 0%, hsl(var(--secondary)) 100%);
           border-radius: 9999px;
-          box-shadow: 0 0 80px rgba(255, 122, 0, 0.45);
+          box-shadow: 0 0 80px hsl(var(--secondary) / 0.45);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -179,7 +159,7 @@ const About = () => {
         .hub-center {
           width: 250px;
           height: 250px;
-          background-color: hsl(var(--infographic-bar-dark));
+          background-color: hsl(var(--primary));
           border-radius: 9999px;
           box-shadow: inset 0 0 10px rgba(0,0,0,0.5);
           display: flex;
@@ -193,8 +173,8 @@ const About = () => {
 
         /* Value Card (Pill) Styles */
         .value-pill {
-          background-color: hsl(var(--infographic-bar-dark)); 
-          color: white;
+  background-color: hsl(var(--primary-foreground) / 0.05);
+  color:white;
           margin: 0.75rem;
           border-radius: 30px;
           width: 200px;
@@ -208,7 +188,7 @@ const About = () => {
         }
         .value-pill:hover {
           transform: translateY(-10px);
-          box-shadow: 0 12px 30px rgba(255, 122, 0, 0.4);
+          box-shadow: 0 12px 30px hsl(var(--secondary) / 0.4);
         }
         
         /* Top-to-bottom ORANGE gradient fill on hover */
@@ -219,7 +199,7 @@ const About = () => {
           left: 0;
           width: 100%;
           height: 100%;
-          background: linear-gradient(180deg, #FF9900 0%, #FF7A00 100%);
+          background: linear-gradient(180deg, hsl(var(--secondary)) 0%, hsl(var(--secondary)) 100%);
           transform: scaleY(0);
           transform-origin: top;
           transition: transform 0.35s ease-in-out; 
@@ -242,9 +222,8 @@ const About = () => {
         }
 
         .value-pill .icon-wrapper {
-          background-color: hsl(var(--infographic-bar-dark));
-          border: 2px solid hsl(var(--infographic-accent-yellow));
-          padding: 10px;
+  background-color: white;
+  border: 2px solid hsl(var(--secondary));          padding: 10px;
           border-radius: 50%;
           margin-bottom: 1rem;
           display: inline-flex;
@@ -252,27 +231,26 @@ const About = () => {
         }
         .value-pill:hover .icon-wrapper {
           background-color: rgba(255,255,255,0.18);
-          border-color: #FF7A00;
+          border-color: hsl(var(--secondary));
         }
 
         .value-pill .title {
           font-weight: 700;
           font-size: 1rem;
-          color: hsl(var(--infographic-accent-yellow));
+          color: hsl(var(--secondary));
           margin-bottom: 0.5rem;
           transition: color 0.35s ease;
         }
-        .value-pill:hover .title {
-          color: hsl(var(--primary)); 
+
+        .value-pill:hover .title,
+        .value-pill:hover .description {
+          color: white;
         }
-        
+                  
         .value-pill .description {
           font-size: 0.9rem;
-          color: hsl(var(--primary-foreground) / 0.7);
-          transition: color 0.35s ease;
-        }
-        .value-pill:hover .description {
-          color: hsl(var(--primary) / 0.85); 
+          color: white;
+          opacity: 0.85;
         }
 
         .card-group-left {
@@ -411,7 +389,7 @@ const About = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: radial-gradient(circle at 30% 0%, rgba(255,122,0,0.45), rgba(15,23,42,0.98));
+          background: radial-gradient(circle at 30% 0%, hsl(var(--secondary) / 0.45), rgba(15,23,42,0.98));
           border: 1px solid rgba(255,122,0,0.8);
           box-shadow: 0 0 20px rgba(255,122,0,0.4);
         }
@@ -438,7 +416,7 @@ const About = () => {
 <section className="relative hero-industrial text-primary-foreground py-20 overflow-hidden">
         {/* Background Glow Effects */}
         <div className="absolute inset-0 pointer-events-none opacity-70">
-          <div className="absolute -right-32 -top-32 w-80 h-80 rounded-full bg-[#FF7A00]/20 blur-3xl"></div>
+          <div className="absolute -right-32 -top-32 w-80 h-80 rounded-full bg-[hsl(var(--secondary))]/20 blur-3xl"></div>
           <div className="absolute -left-16 bottom-0 w-64 h-64 rounded-full bg-white/5 blur-3xl"></div>
         </div>
 
@@ -456,7 +434,7 @@ const About = () => {
                   className="hero-orbit-icon"
                   style={{ top: "-12px", left: "50%", transform: "translateX(-50%)" }}
                 >
-                  <Settings size={18} className="text-[#FF7A00]" />
+                  <Settings size={18} className="text-[hsl(var(--secondary))]" />
                 </div>
 
                 {/* Right */}
@@ -464,7 +442,7 @@ const About = () => {
                   className="hero-orbit-icon"
                   style={{ top: "50%", right: "-12px", transform: "translateY(-50%)" }}
                 >
-                  <Clock size={18} className="text-[#FF7A00]" />
+                  <Clock size={18} className="text-[hsl(var(--secondary))]" />
                 </div>
 
                 {/* Bottom */}
@@ -472,7 +450,7 @@ const About = () => {
                   className="hero-orbit-icon"
                   style={{ bottom: "-12px", left: "50%", transform: "translateX(-50%)" }}
                 >
-                  <Lightbulb size={18} className="text-[#FF7A00]" />
+                  <Lightbulb size={18} className="text-[hsl(var(--secondary))]" />
                 </div>
 
                 {/* Left */}
@@ -480,12 +458,12 @@ const About = () => {
                   className="hero-orbit-icon"
                   style={{ top: "50%", left: "-14px", transform: "translateY(-50%)" }}
                 >
-                  <Anchor size={18} className="text-[#FF7A00]" />
+                  <Anchor size={18} className="text-[hsl(var(--secondary))]" />
                 </div>
               </div>
 
               {/* Circular Image with Bold Border */}
-              <div className="hero-orbit-core rounded-full border-[6px] border-[#FF7A00] shadow-[0_0_30px_rgba(255,122,0,0.35)] overflow-hidden">
+              <div className="hero-orbit-core rounded-full border-[6px] border-[hsl(var(--secondary))] shadow-[0_0_30px_hsl(var(--secondary)/0.35)] overflow-hidden">
                 <motion.img
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
@@ -505,7 +483,7 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={{ duration: 0.5 }}
-                className="uppercase tracking-[0.35em] text-xs mb-3 text-[#FF7A00]"
+                className="uppercase tracking-[0.35em] text-xs mb-3 text-[hsl(var(--secondary))]"
               >
                 Marine &amp; Oilfield Excellence
               </motion.p>
@@ -592,8 +570,8 @@ const About = () => {
                   Driving value through core commitment
                 </p>
                 <div className="flex space-x-3 mt-4">
-                  <Anchor className="text-[#FF7A00]" size={20} />
-                  <Truck className="text-[#FF7A00]" size={20} />
+                  <Anchor className="text-[hsl(var(--secondary))]" size={20} />
+                  <Truck className="text-[hsl(var(--secondary))]" size={20} />
                 </div>
               </div>
             </motion.div>
@@ -633,8 +611,87 @@ const About = () => {
         </div>
       </section>
 
+{/* Brand Logos – Responsive + Background + Headline + Pulse Glow */}
+<section className="relative py-20 bg-[hsl(var(--primary))] overflow-hidden">
+
+  {/* Soft Background Pattern */}
+  <div className="absolute inset-0 bg-[url('/images/company1.jpg')] bg-cover bg-center opacity-[0.07] pointer-events-none"></div>
+
+  {/* Glow accents */}
+  <div className="absolute -top-20 right-10 w-72 h-72 bg-[hsl(var(--secondary))] blur-[150px] opacity-30"></div>
+  <div className="absolute bottom-10 left-5 w-64 h-64 bg-white blur-[120px] opacity-10"></div>
+
+  {/* Section Heading */}
+  <h2 className="relative z-10 text-center text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)] mb-12">
+    Trusted by Top Global Brands
+  </h2>
+
+  {/* Logos Grid */}
+  <div className="
+      relative z-10 
+      max-w-7xl mx-auto 
+      px-4 
+      grid 
+      grid-cols-3 xs:grid-cols-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 
+      gap-x-6 gap-y-11 
+      place-items-center
+  ">
+    {[
+      "/logos/3m.png","/logos/abco.png","/logos/alfa_flex_italy.png","/logos/delta.png",
+      "/logos/dewalt.png","/logos/dormer.png","/logos/enerpac.png","/logos/expert.png",
+      "/logos/fluke.png","/logos/groz.png","/logos/honeywell.png","/logos/inteva.png",
+      "/logos/irwin.png","/logos/kokon.png","/logos/makita.png","/logos/mann.png",
+      "/logos/mitutoyo.png","/logos/msa.png","/logos/north_sun_pool.png",
+      "/logos/north.png","/logos/parker.png","/logos/ridgid.png","/logos/sel.png",
+      "/logos/sgs.png","/logos/starrett.png","/logos/sun_pool.png","/logos/wika.png",
+      "/logos/windlass.png"
+    ].map((logo, index) => (
+      <motion.div
+        key={index}
+        initial={{ opacity: 0, scale: 0.85 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.4, delay: index * 0.03 }}
+        className="relative group"
+      >
+
+        {/* Pulse Glow */}
+        <span className="
+          absolute inset-0 
+          rounded-xl 
+          bg-[hsl(var(--secondary))] 
+          opacity-0 
+          group-hover:opacity-30 
+          blur-xl 
+          transition-all 
+          duration-500
+        "></span>
+
+        <img
+          src={logo}
+          alt="Brand Logo"
+          className="
+            relative z-10
+            bg-white 
+            rounded-xl 
+            p-2 
+            shadow-lg 
+            object-contain
+            hover:scale-110 
+            transition-all duration-300
+            
+            h-12 xs:h-14 sm:h-14 md:h-12 lg:h-14 xl:h-14
+            w-auto
+          "
+        />
+      </motion.div>
+    ))}
+  </div>
+
+</section>
+
 {/* CTA Section (above your global footer) */}
-<section className="py-20 bg-[#FF7A00] text-primary-foreground rounded-t-3xl shadow-2xl">
+<section className="py-20 bg-[hsl(var(--secondary))] text-primary-foreground rounded-t-3xl shadow-2xl">
   <motion.div
     initial={{ opacity: 0, y: 50 }}
     whileInView={{ opacity: 1, y: 0 }}
