@@ -80,7 +80,7 @@ const Home = () => {
 
               <div className="mx-auto mt-2 mb-3 h-[3px] w-10 bg-secondary group-hover:bg-[#003049] transition-all" />
 
-              <p className="text-xs md:text-sm text-white/80 group-hover:text-[#003049]/90">
+              <p className="text-xs md:text-base text-white/80 group-hover:text-[#003049]/90">
                 {desc}
               </p>
             </motion.div>
@@ -163,8 +163,8 @@ most demanding environments.
                   <div className="h-10 w-10 rounded-full bg-secondary/10 flex items-center justify-center mb-2">
                     <Icon className="text-secondary" size={20} />
                   </div>
-                  <p className="font-semibold text-[#0b2a45]">{title}</p>
-                  <p className="text-sm md:text-base text-slate-600 leading-relaxed">{desc}</p>
+                  <p className="text-xl font-semibold text-[#0b2a45]">{title}</p>
+                  <p className="text-base md:text-base text-slate-600 leading-relaxed">{desc}</p>
 
                 </motion.div>
               ))}
@@ -179,7 +179,7 @@ most demanding environments.
               transition={{ duration: 0.5 }}
             >
               <Link to="/products">
-                <Button className="gap-2">
+                <Button className="text-base gap-2">
                   Explore Products <ArrowRight size={16} />
                 </Button>
               </Link>
@@ -240,8 +240,8 @@ most demanding environments.
         transition={{ duration: 0.4, delay: i * 0.1 }}
         className="px-3"
       >
-        <p className="text-lg font-bold text-secondary">{item.label}</p>
-        <p className="text-base text-slate-200 mt-1">{item.desc}</p>
+        <p className="text-2xl font-bold text-secondary">{item.label}</p>
+        <p className="text-xl text-slate-200 mt-1">{item.desc}</p>
       </motion.div>
     ))}
   </div>
@@ -266,7 +266,7 @@ most demanding environments.
             viewport={{ once: true, amount: 0.3 }}
             transition={{ duration: 0.5 }}
           >
-            <p className="text-xs text-secondary uppercase tracking-wider">
+            <p className="text-base text-secondary uppercase tracking-wider">
               Why Choose Us
             </p>
             <h2 className="text-3xl md:text-4xl font-bold text-white">
@@ -312,10 +312,10 @@ most demanding environments.
                   />
                 </div>
 
-                <h3 className="text-lg font-semibold text-white mb-2">
+                <h3 className="text-2xl font-semibold text-white mb-2">
                   {title}
                 </h3>
-                <p className="text-base text-slate-200">{desc}</p>
+                <p className="text-xl text-slate-200">{desc}</p>
               </motion.div>
             ))}
           </div>
@@ -337,11 +337,11 @@ most demanding environments.
             viewport={{ once: true, amount: 0.4 }}
             transition={{ duration: 0.5 }}
           >
-            <p className="text-xs uppercase text-white/80">Get Started</p>
+            <p className="text-base uppercase text-white/80">Get Started</p>
             <h2 className="text-2xl md:text-3xl font-bold text-white">
               Need industrial supplies? We’re here to support you.
             </h2>
-            <p className="text-base text-white/80 mt-2 max-w-lg">
+            <p className="text-xl text-white/80 mt-2 max-w-lg">
               Send us your requirements and our team will share options, pricing,
               and delivery timelines.
             </p>
@@ -354,7 +354,7 @@ most demanding environments.
             transition={{ duration: 0.5 }}
           >
             <Link to="/contact">
-              <Button className="bg-white text-secondary hover:bg-white/90">
+              <Button className="text-xl bg-white text-secondary hover:bg-white/90">
                 Contact Us
               </Button>
             </Link>

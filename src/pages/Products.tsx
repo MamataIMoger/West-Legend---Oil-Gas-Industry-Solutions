@@ -1135,7 +1135,7 @@ const ProductCard: React.FC<{
         ${
           isRelated
             ? "hover:shadow-xl"
-            : "hover:shadow-orange-200 hover:border-[#F97A1E]/70"
+            : "hover:shadow-secondary/20 hover:border-secondary/70"
         }`}
     >
       {/* Image */}
@@ -1156,7 +1156,7 @@ const ProductCard: React.FC<{
       <div className="px-3 pb-4 pt-3 text-center">
         <h3
           className={`font-semibold text-slate-900 mb-2 line-clamp-2 transition-colors duration-200 ${
-            isRelated ? "text-sm" : "text-base hover:text-orange-600"
+            isRelated ? "text-sm" : "text-base hover:text-secondary"
           }`}
         >
           {product.title}
@@ -1168,11 +1168,11 @@ const ProductCard: React.FC<{
               inline-flex items-center justify-center
               mt-1 text-xs font-bold
               rounded-full px-5 py-2.5
-              border border-[#F97A1E]
-              text-[#F97A1E]
+              border border-secondary
+              text-secondary
               bg-white
-              hover:bg-[#F97A1E] hover:text-slate-900 
-              hover:shadow-lg hover:shadow-[#F97A1E]/40 
+              hover:bg-secondary hover:text-slate-900 
+              hover:shadow-lg hover:shadow-secondary/40 
               transition-all duration-200 ease-out
               active:scale-95
             "
@@ -1356,36 +1356,36 @@ const ProductsPage: React.FC = () => {
         ></div>
 
         {/* Spotlight Glow Center */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(251,174,23,0.18),transparent_70%)]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(128,0,0,0.25),transparent_70%)]"></div>
 
         {/* Oil Droplet Motion */}
-        <div className="absolute top-[-20px] left-1/2 w-2 h-2 rounded-full bg-[#FBAE17] animate-oil-drop"></div>
-        <div className="absolute top-[-20px] left-1/2 w-2 h-2 rounded-full bg-[#F97A1E] animate-oil-drop"></div>
+        <div className="absolute top-[-20px] left-1/2 w-2 h-2 rounded-full bg-secondary animate-oil-drop"></div>
+        <div className="absolute top-[-20px] left-1/2 w-2 h-2 rounded-full bg-secondary/80 animate-oil-drop"></div>
 
         {/* Glow Nodes */}
-        <div className="absolute top-10 left-20 w-4 h-4 bg-[#F97A1E] rounded-full blur-md animate-pulse"></div>
-        <div className="absolute bottom-16 right-28 w-5 h-5 bg-[#F97A1E] rounded-full blur-lg animate-ping"></div>
-        <div className="absolute top-1/3 right-10 w-3 h-3 bg-[#F97A1E]/80 rounded-full animate-bounce"></div>
+        <div className="absolute top-10 left-20 w-4 h-4 bg-secondary rounded-full blur-md animate-pulse"></div>
+        <div className="absolute bottom-16 right-28 w-5 h-5 bg-secondary rounded-full blur-lg animate-ping"></div>
+        <div className="absolute top-1/3 right-10 w-3 h-3 bg-secondary/80 rounded-full animate-bounce"></div>
 
         {/* Floating Icons */}
         <div className="absolute left-12 top-1/2 -translate-y-1/2 animate-float-slow">
-          <Truck size={42} className="text-[#F97A1E]/80" />
+          <Truck size={42} className="text-secondary" />
         </div>
         <div className="absolute right-16 top-1/3 animate-float">
-          <Wrench size={40} className="text-[#F97A1E]/70" />
+          <Wrench size={40} className="text-secondary" />
         </div>
         <div className="absolute left-1/3 bottom-10 animate-float-reverse">
-          <Shield size={38} className="text-[#F97A1E]/60" />
+          <Shield size={38} className="text-secondary" />
         </div>
 
         {/* MAIN CONTENT */}
         <div className="container mx-auto px-6 relative z-10 text-center max-w-3xl">
-          <p className="text-xs uppercase tracking-[0.35em] text-[#F97A1E] mb-4">
+          <p className="text-xs uppercase tracking-[0.35em] text-secondary mb-4">
             Industrial Grade Products
           </p>
 
           <h1 className="font-extrabold text-4xl sm:text-5xl lg:text-6xl mb-5 leading-tight">
-            Products <span className="text-[#F97A1E]">FOR INDUSTRY</span>
+            Products <span className="text-secondary">FOR INDUSTRY</span>
           </h1>
 
           <p className="text-base sm:text-lg text-gray-300 mb-10">
@@ -1400,8 +1400,8 @@ const ProductsPage: React.FC = () => {
               placeholder="Search by product name, model #, or spec..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full py-4 px-6 rounded-full bg-[#111A2B] border border-[#F97A1E]/40 text-sm
-                placeholder-gray-400 focus:ring-4 focus:ring-[#F97A1E]/40 focus:outline-none
+              className="w-full py-4 px-6 rounded-full bg-[#111A2B] border border-secondary/40 text-sm
+                placeholder-gray-400 focus:ring-4 focus:ring-secondary/40 focus:outline-none
                 text-white transition"
             />
           </div>
@@ -1510,7 +1510,7 @@ const ProductsPage: React.FC = () => {
                       className={`flex items-center justify-between w-full text-left px-4 py-3 rounded-xl text-sm transition-all
                         ${
                           isActive
-                            ? "bg-[#F97A1E] text-white font-bold shadow-lg shadow-[#F97A1E]/40"
+                            ? "bg-secondary text-white font-bold shadow-lg shadow-secondary/40"
                             : "text-slate-700 hover:bg-gray-100 hover:text-slate-900"
                         }`}
                     >
@@ -1537,7 +1537,7 @@ const ProductsPage: React.FC = () => {
                               ${
                                 activeCategory === category &&
                                 activeSubCategory === sub
-                                  ? "bg-orange-100 text-orange-700 font-semibold"
+                                  ? "bg-secondary/20 text-secondary font-semibold"
                                   : "text-slate-600 hover:bg-gray-100 hover:text-slate-900"
                               }`}
                           >
@@ -1564,7 +1564,7 @@ const ProductsPage: React.FC = () => {
                       setSidebarOpen(false);
                       handleProductSelect(p);
                     }}
-                    className="flex items-center w-full text-left text-xs text-slate-700 hover:text-orange-600 transition"
+                    className="flex items-center w-full text-left text-xs text-slate-700 hover:text-secondary transition"
                   >
                     <div className="w-12 h-12 rounded-lg bg-gray-100 flex items-center justify-center mr-3 overflow-hidden shadow-sm">
                       <img
@@ -1632,7 +1632,7 @@ const ProductsPage: React.FC = () => {
                 {/* DETAILS VIEW */}
                 <button
                   onClick={() => setSelectedProduct(null)}
-                  className="mb-6 flex items-center text-sm text-orange-600 font-medium hover:text-orange-800 transition-colors duration-200"
+                  className="mb-6 flex items-center text-sm text-secondary font-medium hover:text-secondary/80 transition-colors duration-200"
                 >
                   <svg
                     className="w-4 h-4 mr-2"
@@ -1670,7 +1670,7 @@ const ProductsPage: React.FC = () => {
 
                   {/* Right: Product Info */}
                   <div className="lg:w-1/2 flex flex-col justify-center space-y-4">
-                    <p className="text-xs uppercase tracking-[0.18em] text-orange-600 font-bold">
+                    <p className="text-xs uppercase tracking-[0.18em] text-secondary font-bold">
                       {selectedProduct.category}
                       {selectedProduct.subCategory
                         ? ` / ${selectedProduct.subCategory}`
@@ -1694,7 +1694,7 @@ const ProductsPage: React.FC = () => {
                             block: "start",
                           });
                       }}
-                      className="text-orange-600 font-semibold text-sm hover:text-orange-700 transition underline underline-offset-4 w-fit"
+                      className="text-secondary font-semibold text-sm hover:text-secondary/80 transition underline underline-offset-4 w-fit"
                     >
                       Read more →
                     </button>
@@ -1716,7 +1716,7 @@ const ProductsPage: React.FC = () => {
                           px-6 py-4 border-r border-gray-200 uppercase tracking-wide transition-all duration-200 whitespace-nowrap
                           ${
                             activeTab === tab
-                              ? "text-[#F97A1E] border-b-2 border-b-orange-600 -mb-px bg-gray-50 font-extrabold"
+                              ? "text-secondary border-b-2 border-b-secondary -mb-px bg-gray-50 font-extrabold"
                               : "text-slate-600 bg-white hover:bg-gray-50"
                           }
                         `}

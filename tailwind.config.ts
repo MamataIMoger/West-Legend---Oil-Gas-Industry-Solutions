@@ -55,9 +55,9 @@ export default {
           medium: "hsl(var(--navy-medium))",
           light: "hsl(var(--navy-light))",
         },
-        orange: {
-          primary: "hsl(var(--orange-primary))",
-          hover: "hsl(var(--orange-hover))",
+        red: {
+          primary: "hsl(var(--red-primary))",
+          hover: "hsl(var(--red-hover))",
         },
         grey: {
           light: "hsl(var(--grey-light))",

@@ -38,18 +38,18 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="bg-primary text-white pt-12 pb-6">
-      <div className="max-w-6xl mx-auto px-4">
-        <div className="grid gap-10 lg:grid-cols-3 items-start">
+    <footer className="bg-primary text-white pt-12 pb-6 text-xl">
+      <div className="max-w-6xl mx-auto px-4 py-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 justify-between items-start">
           {/* LEFT – Logo + intro + socials */}
-          <div className="space-y-5">
+          <div className="space-y-10">
             {/* Logo */}
             <div className="flex items-center gap-3">
               <div>
-                <p className="text-lg font-bold leading-tight tracking-wide">
+                <p className="text-xl font-bold leading-tight tracking-wide">
                   WEST LEGEND TRADING LLC
                 </p>
-                <p className="text-[11px] uppercase tracking-[0.18em] text-white/60 mt-1">
+                <p className="text-base uppercase tracking-[0.18em] text-white/60 mt-1">
                   Marine • Offshore • Oil &amp; Gas Supply
                 </p>
               </div>
@@ -84,10 +84,10 @@ const Footer = () => {
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-1 text-xs text-white/80">
             {/* Quick Links */}
             <div>
-              <h4 className="text-base font-semibold mb-2 text-white/90">
+              <h4 className="text-xl font-semibold mb-2 text-white/90">
                 Quick Links
               </h4>
-             <ul className="space-y-1.5 text-[15px] text-white/80">
+             <ul className="space-y-1.5 text-base text-white/80">
 
                 <li>
                   <Link
@@ -127,10 +127,10 @@ const Footer = () => {
 
             {/* Products */}
             <div>
-              <h4 className="text-base font-semibold mb-2 text-white/90">
+              <h4 className="text-xl font-semibold mb-2 text-white/90">
                 Product Categories
               </h4>
-              <ul className="space-y-1.5 text-[15px] text-white/80">
+              <ul className="space-y-1.5 text-base text-white/80">
                 <li>
                   <Link
                     to="/products"
@@ -176,7 +176,7 @@ const Footer = () => {
           </div>
 
           {/* RIGHT – Contact info */}
-          <div className="space-y-4 text-sm text-white/85">
+          <div className="space-y-9 text-sm text-white/85">
 
             {/* Phone */}
             <div>
