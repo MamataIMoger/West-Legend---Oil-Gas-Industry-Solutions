@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   CheckCircle,
   Target,
@@ -66,6 +66,11 @@ const fadeUpVariants = {
 };
 
 const About = () => {
+  // 👇 Scroll to top whenever About page loads
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, []);
+
   const leftValues = values.filter((v) => v.group === "left");
   const rightValues = values.filter((v) => v.group === "right");
 
@@ -173,8 +178,8 @@ const About = () => {
 
         /* Value Card (Pill) Styles */
         .value-pill {
-  background-color: hsl(var(--primary-foreground) / 0.05);
-  color:white;
+          background-color: hsl(var(--primary-foreground) / 0.05);
+          color:white;
           margin: 0.75rem;
           border-radius: 30px;
           width: 200px;
@@ -222,8 +227,8 @@ const About = () => {
         }
 
         .value-pill .icon-wrapper {
-  background-color: white;
-  border: 2px solid hsl(var(--secondary));          padding: 10px;
+          background-color: white;
+          border: 2px solid hsl(var(--secondary));          padding: 10px;
           border-radius: 50%;
           margin-bottom: 1rem;
           display: inline-flex;
@@ -413,15 +418,15 @@ const About = () => {
       `}</style>
 
       {/* 🧲 HERO SECTION WITH MOVING SHAPES + CIRCLE IMAGE */}
-<section className="relative hero-industrial text-primary-foreground py-20 overflow-hidden">
+      <section className="relative hero-industrial text-primary-foreground py-20 overflow-hidden">
         {/* Background Glow Effects */}
         <div className="absolute inset-0 pointer-events-none opacity-70">
           <div className="absolute -right-32 -top-32 w-80 h-80 rounded-full bg-[hsl(var(--secondary))]/20 blur-3xl"></div>
           <div className="absolute -left-16 bottom-0 w-64 h-64 rounded-full bg-white/5 blur-3xl"></div>
         </div>
 
-<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-<div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12 md:gap-16">
             {/* LEFT — Orbiting Icons + Circle Image */}
             <div className="hero-orbit-wrapper relative flex items-center justify-center">
               {/* Hex Outline Behind */}
@@ -514,7 +519,7 @@ const About = () => {
 
       {/* Sequential Content Block 1: Introduction */}
       <section className="py-20 bg-white">
-<div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial="hidden"
             whileInView="visible"
@@ -611,128 +616,125 @@ const About = () => {
         </div>
       </section>
 
-{/* Brand Logos – Responsive + Background + Headline + Pulse Glow */}
-<section className="relative py-20 bg-[hsl(var(--primary))] overflow-hidden">
+      {/* Brand Logos – Responsive + Background + Headline + Pulse Glow */}
+      <section className="relative py-20 bg-[hsl(var(--primary))] overflow-hidden">
+        {/* Soft Background Pattern */}
+        <div className="absolute inset-0 bg-[url('/images/company1.jpg')] bg-cover bg-center opacity-[0.07] pointer-events-none"></div>
 
-  {/* Soft Background Pattern */}
-  <div className="absolute inset-0 bg-[url('/images/company1.jpg')] bg-cover bg-center opacity-[0.07] pointer-events-none"></div>
+        {/* Glow accents */}
+        <div className="absolute -top-20 right-10 w-72 h-72 bg-[hsl(var(--secondary))] blur-[150px] opacity-30"></div>
+        <div className="absolute bottom-10 left-5 w-64 h-64 bg-white blur-[120px] opacity-10"></div>
 
-  {/* Glow accents */}
-  <div className="absolute -top-20 right-10 w-72 h-72 bg-[hsl(var(--secondary))] blur-[150px] opacity-30"></div>
-  <div className="absolute bottom-10 left-5 w-64 h-64 bg-white blur-[120px] opacity-10"></div>
+        {/* Section Heading */}
+        <h2 className="relative z-10 text-center text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)] mb-12">
+          Trusted by Top Global Brands
+        </h2>
 
-  {/* Section Heading */}
-  <h2 className="relative z-10 text-center text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.4)] mb-12">
-    Trusted by Top Global Brands
-  </h2>
-
-  {/* Logos Grid */}
-  <div className="
-      relative z-10 
-      max-w-7xl mx-auto 
-      px-4 
-      grid 
-      grid-cols-3 xs:grid-cols-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 
-      gap-x-6 gap-y-11 
-      place-items-center
-  ">
-    {[
-      "/logos/3m.png","/logos/abco.png","/logos/alfa_flex_italy.png","/logos/delta.png",
-      "/logos/dewalt.png","/logos/dormer.png","/logos/enerpac.png","/logos/expert.png",
-      "/logos/fluke.png","/logos/groz.png","/logos/honeywell.png","/logos/inteva.png",
-      "/logos/irwin.png","/logos/kokon.png","/logos/makita.png","/logos/mann.png",
-      "/logos/mitutoyo.png","/logos/msa.png","/logos/north_sun_pool.png",
-      "/logos/north.png","/logos/parker.png","/logos/ridgid.png","/logos/sel.png",
-      "/logos/sgs.png","/logos/starrett.png","/logos/sun_pool.png","/logos/wika.png",
-      "/logos/windlass.png"
-    ].map((logo, index) => (
-      <motion.div
-        key={index}
-        initial={{ opacity: 0, scale: 0.85 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.4, delay: index * 0.03 }}
-        className="relative group"
-      >
-
-        {/* Pulse Glow */}
-        <span className="
-          absolute inset-0 
-          rounded-xl 
-          bg-[hsl(var(--secondary))] 
-          opacity-0 
-          group-hover:opacity-30 
-          blur-xl 
-          transition-all 
-          duration-500
-        "></span>
-
-        <img
-          src={logo}
-          alt="Brand Logo"
+        {/* Logos Grid */}
+        <div
           className="
-            relative z-10
-            bg-white 
-            rounded-xl 
-            p-2 
-            shadow-lg 
-            object-contain
-            hover:scale-110 
-            transition-all duration-300
-            
-            h-12 xs:h-14 sm:h-14 md:h-12 lg:h-14 xl:h-14
-            w-auto
-          "
-        />
-      </motion.div>
-    ))}
-  </div>
+            relative z-10 
+            max-w-7xl mx-auto 
+            px-4 
+            grid 
+            grid-cols-3 xs:grid-cols-4 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 
+            gap-x-6 gap-y-11 
+            place-items-center"
+        >
+          {[
+            "/logos/3m.png","/logos/abco.png","/logos/alfa_flex_italy.png","/logos/delta.png",
+            "/logos/dewalt.png","/logos/dormer.png","/logos/enerpac.png","/logos/expert.png",
+            "/logos/fluke.png","/logos/groz.png","/logos/honeywell.png","/logos/inteva.png",
+            "/logos/irwin.png","/logos/kokon.png","/logos/makita.png","/logos/mann.png",
+            "/logos/mitutoyo.png","/logos/msa.png","/logos/north_sun_pool.png",
+            "/logos/north.png","/logos/parker.png","/logos/ridgid.png","/logos/sel.png",
+            "/logos/sgs.png","/logos/starrett.png","/logos/sun_pool.png","/logos/wika.png",
+            "/logos/windlass.png"
+          ].map((logo, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.85 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ duration: 0.4, delay: index * 0.03 }}
+              className="relative group"
+            >
+              {/* Pulse Glow */}
+              <span
+                className="
+                  absolute inset-0 
+                  rounded-xl 
+                  bg-[hsl(var(--secondary))] 
+                  opacity-0 
+                  group-hover:opacity-30 
+                  blur-xl 
+                  transition-all 
+                  duration-500"
+              ></span>
 
-</section>
+              <img
+                src={logo}
+                alt="Brand Logo"
+                className="
+                  relative z-10
+                  bg-white 
+                  rounded-xl 
+                  p-2 
+                  shadow-lg 
+                  object-contain
+                  hover:scale-110 
+                  transition-all duration-300
+                  
+                  h-12 xs:h-14 sm:h-14 md:h-12 lg:h-14 xl:h-14
+                  w-auto"
+              />
+            </motion.div>
+          ))}
+        </div>
+      </section>
 
-{/* CTA Section (above your global footer) */}
-<section className="py-20 bg-[hsl(var(--secondary))] text-primary-foreground rounded-t-3xl shadow-2xl">
-  <motion.div
-    initial={{ opacity: 0, y: 50 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.4 }}
-    transition={{ duration: 0.8, ease: "easeOut" }}
-    className="container mx-auto px-4 sm:px-6 lg:px-8 text-center"
-  >
-    <motion.h2
-      initial={{ scale: 0.95, opacity: 0 }}
-      whileInView={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
-      viewport={{ once: true }}
-      className="text-3xl sm:text-4xl font-extrabold mb-6 text-primary-foreground"
-    >
-      Partner with West Legend
-    </motion.h2>
+      {/* CTA Section (above your global footer) */}
+      <section className="py-20 bg-[hsl(var(--secondary))] text-primary-foreground rounded-t-3xl shadow-2xl">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.4 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="container mx-auto px-4 sm:px-6 lg:px-8 text-center"
+        >
+          <motion.h2
+            initial={{ scale: 0.95, opacity: 0 }}
+            whileInView={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-3xl sm:text-4xl font-extrabold mb-6 text-primary-foreground"
+          >
+            Partner with West Legend
+          </motion.h2>
 
-    <motion.p
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
-      viewport={{ once: true }}
-      className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8"
-    >
-      Explore our catalog or connect with our specialized team to discuss your project requirements.
-    </motion.p>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut", delay: 0.3 }}
+            viewport={{ once: true }}
+            className="text-xl text-primary-foreground/90 max-w-3xl mx-auto mb-8"
+          >
+            Explore our catalog or connect with our specialized team to discuss your project requirements.
+          </motion.p>
 
-    <motion.a
-      href="/contact"
-      initial={{ opacity: 0, scale: 0.9 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      whileHover={{ scale: 1.07, boxShadow: "0 8px 30px rgba(0,0,0,0.3)" }}
-      transition={{ duration: 0.4, ease: "easeOut", delay: 0.4 }}
-      viewport={{ once: true }}
-      className="inline-block bg-primary text-primary-foreground font-semibold py-3 px-8 rounded-full text-lg shadow-lg hover:bg-white/95 transition duration-300 hover:text-primary"
-    >
-      Contact Sales Team
-    </motion.a>
-  </motion.div>
-</section>
-
+          <motion.a
+            href="/contact"
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            whileHover={{ scale: 1.07, boxShadow: "0 8px 30px rgba(0,0,0,0.3)" }}
+            transition={{ duration: 0.4, ease: "easeOut", delay: 0.4 }}
+            viewport={{ once: true }}
+            className="inline-block bg-primary text-primary-foreground font-semibold py-3 px-8 rounded-full text-lg shadow-lg hover:bg.white/95 transition duration-300 hover:text-primary"
+          >
+            Contact Sales Team
+          </motion.a>
+        </motion.div>
+      </section>
     </div>
   );
 };
